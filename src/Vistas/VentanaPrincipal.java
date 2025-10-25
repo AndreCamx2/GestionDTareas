@@ -65,12 +65,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAnadirtarea = new javax.swing.JButton();
         btnEliminartarea = new javax.swing.JButton();
         btnBuscartarea = new javax.swing.JButton();
+        txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
 
         tblTareas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,43 +96,73 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblTareas);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 680, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 710, 220));
 
         tituloTareas.setBackground(new java.awt.Color(255, 255, 255));
-        tituloTareas.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
+        tituloTareas.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
         tituloTareas.setForeground(new java.awt.Color(255, 255, 255));
         tituloTareas.setText("TAREAS");
-        jPanel1.add(tituloTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 220, -1));
+        jPanel1.add(tituloTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 130, -1));
 
+        btnAtras.setBackground(new java.awt.Color(100, 100, 100));
+        btnAtras.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/regresar.png"))); // NOI18N
         btnAtras.setText("Atras");
+        btnAtras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 60, 40));
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 110, 40));
 
+        btnActualizartarea.setBackground(new java.awt.Color(100, 140, 170));
+        btnActualizartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnActualizartarea.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/actualizar-tarea.png"))); // NOI18N
         btnActualizartarea.setText("Actualizar tarea");
-        jPanel1.add(btnActualizartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, 40));
+        jPanel1.add(btnActualizartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, -1, 40));
 
+        btnAnadirtarea.setBackground(new java.awt.Color(100, 160, 100));
+        btnAnadirtarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAnadirtarea.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnadirtarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/añadir-tarea.png"))); // NOI18N
         btnAnadirtarea.setText("Añadir tarea");
+        btnAnadirtarea.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         btnAnadirtarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirtareaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 100, 40));
+        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 160, 40));
 
+        btnEliminartarea.setBackground(new java.awt.Color(170, 90, 90));
+        btnEliminartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnEliminartarea.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/borrar-tarea.png"))); // NOI18N
         btnEliminartarea.setText("Eliminar tarea");
         btnEliminartarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminartareaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 110, 40));
+        jPanel1.add(btnEliminartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 170, 40));
 
+        btnBuscartarea.setBackground(new java.awt.Color(120, 120, 160));
+        btnBuscartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnBuscartarea.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/buscar-tarea.png"))); // NOI18N
         btnBuscartarea.setText("Buscar tarea");
-        jPanel1.add(btnBuscartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 100, 40));
+        jPanel1.add(btnBuscartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 160, 40));
+
+        txtFondo.setBackground(new java.awt.Color(255, 255, 255));
+        txtFondo.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
+        txtFondo.setForeground(new java.awt.Color(255, 255, 255));
+        txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo.png"))); // NOI18N
+        txtFondo.setMaximumSize(new java.awt.Dimension(1200, 824));
+        txtFondo.setMinimumSize(new java.awt.Dimension(1200, 824));
+        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -250, 890, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +174,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,5 +228,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblTareas;
     private javax.swing.JLabel tituloTareas;
+    private javax.swing.JLabel txtFondo;
     // End of variables declaration//GEN-END:variables
 }
