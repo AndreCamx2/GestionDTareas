@@ -6,26 +6,30 @@ package Vistas;
 
 import DAO.TareaDAO;
 import Modelos.Tarea;
+import Modelos.Usuario;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author HP
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+private String usuarioLogeado;
 
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal(String usuario) {
         initComponents();
+        this.usuarioLogeado = usuario;
         DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
         tblTareas.setDefaultEditor(Object.class, null); // Desactiva edición de todas las celdas de la tabla
            cargarTareasEnTabla();
     }
     
-    private void cargarTareasEnTabla() {
+ private void cargarTareasEnTabla() {
     TareaDAO dao = new TareaDAO();
     List<Tarea> tareas = dao.cargarTareasDesdeArchivos();
 
@@ -184,7 +188,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
    
         // Abrimos la ventana de Añadir tareas
-    VentanaAñadirTarea ventanaAñadirTarea = new VentanaAñadirTarea(modelo);
+    VentanaAñadirTarea ventanaAñadirTarea = new VentanaAñadirTarea(modelo, usuarioLogeado);
     ventanaAñadirTarea.setVisible(true); 
     
     
@@ -194,15 +198,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cargarTareasEnTabla(); // 🔁 Se actualiza y se reordena automáticamente
     }
 });
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAnadirtareaActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-         // Abrimos la ventana principal
-    Login login = new Login();
-    login.setVisible(true);
+        // Abrimos la ventana de opciones
+    OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioLogeado);
+    opcionesTareas.setVisible(true);
     this.dispose(); // Cierra la ventana principal
+
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnAtrasActionPerformed

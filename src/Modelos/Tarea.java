@@ -20,14 +20,16 @@ public class Tarea {
     private LocalDate fechaInicio;
     private LocalDate fechaEntrega;
     private String prioridad;
+    private String usuario;
 
-    public Tarea(String nombre, String asignatura, LocalDate fechaInicio, LocalDate fechaEntrega) {
+    public Tarea(String nombre, String asignatura, LocalDate fechaInicio, LocalDate fechaEntrega, String usuario) {
         this.id = contador++;
         this.nombre = nombre;
         this.asignatura = asignatura;
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
         this.prioridad = calcularPrioridad();
+        this.usuario= usuario;
     }
 
     
@@ -60,6 +62,9 @@ public class Tarea {
 
     public String getPrioridad() {
         return prioridad;
+    }
+    public String getUsuario() {
+        return usuario;
     }
     
     

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class TareaDAO {
 
-    private static final String DIRECTORIO_TAREAS = "C:\\Users\\Andre\\OneDrive\\Documents\\NetBeansProjects\\Gestor-de-tareas\\TAREAS_txt\\";
+    private static final String DIRECTORIO_TAREAS = "C:\\Users\\HP\\OneDrive\\Desktop\\proyecto\\GestionDTareas\\TAREAS_txt";
 
     // ✅ Constructor: Crea la carpeta si no existe
     public TareaDAO() {
@@ -39,6 +39,7 @@ public class TareaDAO {
             writer.write("Fecha de inicio: " + tarea.getFechaInicio() + "\n");
             writer.write("Fecha de entrega: " + tarea.getFechaEntrega() + "\n");
             writer.write("Prioridad: " + tarea.getPrioridad() + "\n");
+            writer.write("Usuario: "+ tarea.getUsuario()+ "\n");
 
             JOptionPane.showMessageDialog(null,
                     "✅ Tarea registrada correctamente:\n" + nombreArchivo,
@@ -73,7 +74,7 @@ public class TareaDAO {
         for (File archivo : archivos) {
             try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
                 String linea;
-                String nombre = "", asignatura = "", prioridad = "";
+                String nombre = "", asignatura = "", prioridad = "", usuario = "";
                 LocalDate fechaInicio = null, fechaEntrega = null;
                 int id = 0;
 
@@ -84,10 +85,11 @@ public class TareaDAO {
                     else if (linea.startsWith("Fecha de inicio:")) fechaInicio = LocalDate.parse(linea.substring(16).trim());
                     else if (linea.startsWith("Fecha de entrega:")) fechaEntrega = LocalDate.parse(linea.substring(17).trim());
                     else if (linea.startsWith("Prioridad:")) prioridad = linea.substring(10).trim();
+                    else if (linea.startsWith("Usuario:")) usuario = linea.substring(8).trim();
                 }
 
                 // 🔧 Crea la tarea usando el constructor original
-                Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega);
+                Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
                 tarea.actualizarPrioridad(); // recalcula prioridad
                 listaTareas.add(tarea);
 

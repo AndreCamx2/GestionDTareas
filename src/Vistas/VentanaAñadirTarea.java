@@ -18,19 +18,19 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaAñadirTarea extends javax.swing.JFrame {
 
     private DefaultTableModel modeloTabla; // referencia al modelo de la tabla principal
-    private TareaDAO tareaDAO;             // DAO para guardar la tarea en archivo
- 
-
+    private TareaDAO tareaDAO;
+    private String usuario; 
     /**
      * Creates new form VentanaAñadirTarea
      */
     // constructor que recibe el modelo de la tabla principal
 
-    public VentanaAñadirTarea(DefaultTableModel modelo) {
+     public VentanaAñadirTarea(DefaultTableModel modelo, String usuario) {
         initComponents();
         this.modeloTabla = modelo;
         this.tareaDAO = new TareaDAO();
-        
+        this.usuario = usuario;
+    
         
         setLocationRelativeTo(null);
         setResizable(false);
@@ -143,57 +143,61 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // Abrimos la ventana principal
-        VentanaPrincipal ventana = new VentanaPrincipal();
+// Abrimos la ventana principal
+        VentanaPrincipal ventana = new VentanaPrincipal(usuario);
         ventana.setVisible(true);
         this.dispose(); // Cierra Añadir tareas
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try {
-            // 1️⃣ Obtener datos del formulario
-            String nombre = txtNombre.getText().trim();
-            String asignatura = txtAsignatura.getText().trim();
-            LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
-            .atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
-            .atZone(ZoneId.systemDefault()).toLocalDate();
+try {
+        // 1️⃣ Obtener datos del formulario
+        String nombre = txtNombre.getText().trim();
+        String asignatura = txtAsignatura.getText().trim();
+        LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate();
+        
 
-            // Validar que no haya campos vacíos
-            if (nombre.isEmpty() || asignatura.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
-                return;
-            }
-
-            // 2️⃣ Crear objeto Tarea
-            Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega);
-
-            // 3️⃣ Guardar en archivo TXT
-            boolean guardado = tareaDAO.registrarTarea(tarea);
-
-            // 4️⃣ Si se guarda bien, agregar a la tabla
-            if (guardado) {
-                modeloTabla.addRow(new Object[]{
-                    modeloTabla.getRowCount() + 1,  // Posición (automática)
-                    tarea.getNombre(),              // Nombre
-                    tarea.getId(),                  // ID autogenerado
-                    tarea.getAsignatura(),          // Asignatura
-                    tarea.getFechaInicio(),         // Fecha de inicio
-                    tarea.getFechaEntrega(),        // Fecha de entrega
-                    tarea.getPrioridad()            // Prioridad calculada
-                });
-
-                JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
-                this.dispose(); // Cierra la ventana al terminar
-
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "❌  Prueba Error al guardar la tarea: " + e.getMessage());
-            e.printStackTrace();
+        // Validar que no haya campos vacíos
+        if (nombre.isEmpty() || asignatura.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
+            return;
         }
 
+        // 2️⃣ Crear objeto Tarea
+        Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
+
+        // 3️⃣ Guardar en archivo TXT
+        boolean guardado = tareaDAO.registrarTarea(tarea);
+
+        // 4️⃣ Si se guarda bien, agregar a la tabla
+        if (guardado) {
+            modeloTabla.addRow(new Object[]{
+                modeloTabla.getRowCount() + 1,  // Posición (automática)
+                tarea.getNombre(),              // Nombre
+                tarea.getId(),                  // ID autogenerado
+                tarea.getAsignatura(),          // Asignatura
+                tarea.getFechaInicio(),         // Fecha de inicio
+                tarea.getFechaEntrega(),        // Fecha de entrega
+                tarea.getPrioridad()            // Prioridad calculada
+            });
+            
+            
+
+            JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
+            this.dispose(); // Cierra la ventana al terminar
+            
+        }
+        
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "❌ Error al guardar la tarea: " + e.getMessage());
+        e.printStackTrace();
+    }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 

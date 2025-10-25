@@ -6,7 +6,6 @@ package Vistas;
 
 import DAO.UsuarioDAO;
 import Modelos.Usuario;
-import Vistas.Login;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,8 +36,8 @@ public class CrearUsuario extends javax.swing.JFrame {
         txtNombre1 = new javax.swing.JLabel();
         txtContraseña1 = new javax.swing.JLabel();
         txtRegistroUsuario = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
+        txtContrasenaUsuario = new javax.swing.JTextField();
+        txtNombreUsuario = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         btnCrearUsuario = new javax.swing.JButton();
@@ -75,19 +74,19 @@ public class CrearUsuario extends javax.swing.JFrame {
         txtRegistroUsuario.setText("Registro de Usuario");
         jPanel1.add(txtRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtContrasenaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseñaActionPerformed(evt);
+                txtContrasenaUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 220, 30));
+        jPanel1.add(txtContrasenaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 220, 30));
 
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtNombreUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 220, 30));
+        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 220, 30));
 
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +111,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 btnCrearUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 100, 40));
+        jPanel1.add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 130, 40));
 
         btnCancelar.setBackground(new java.awt.Color(170, 90, 90));
         btnCancelar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
@@ -123,7 +122,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 100, 40));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 120, 40));
 
         txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
         jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -250, -1, -1));
@@ -158,7 +157,9 @@ public class CrearUsuario extends javax.swing.JFrame {
         try {
         // 1️⃣ Obtener datos del formulario
         String nombre = txtNombre.getText().trim();
-        String contrasena = txtApellido.getText().trim();
+        String apellido = txtApellido.getText().trim();
+        String nombreUsuario = txtNombreUsuario.getText().trim();
+        String contrasena = txtContrasenaUsuario.getText().trim();
 
         // Validar campos vacíos
         if (nombre.isEmpty() || contrasena.isEmpty()) {
@@ -204,13 +205,13 @@ public class CrearUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtNombreUsuarioActionPerformed
 
-    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+    private void txtContrasenaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaActionPerformed
+    }//GEN-LAST:event_txtContrasenaUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -219,13 +220,13 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JLabel txtApellido1;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JTextField txtContrasenaUsuario;
     private javax.swing.JLabel txtContraseña1;
     private javax.swing.JLabel txtFondo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JLabel txtNombre1;
+    private javax.swing.JTextField txtNombreUsuario;
     private javax.swing.JLabel txtRegistroUsuario;
-    private javax.swing.JTextField txtUsuario;
     private javax.swing.JLabel txtUsuario1;
     // End of variables declaration//GEN-END:variables
 }
