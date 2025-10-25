@@ -32,69 +32,119 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        txtUsuario1 = new javax.swing.JLabel();
+        txtApellido1 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JLabel();
+        txtContraseña1 = new javax.swing.JLabel();
+        txtRegistroUsuario = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnCrearUsuario = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtContrasenaUsuario = new javax.swing.JTextField();
-        txtNombreUsuario = new javax.swing.JTextField();
+        txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 450));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nombre de Usuario:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        txtUsuario1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtUsuario1.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario1.setText("Usuario:");
+        jPanel1.add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
-        jLabel2.setText("Contraseña:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        txtApellido1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtApellido1.setForeground(new java.awt.Color(255, 255, 255));
+        txtApellido1.setText("Apellido:");
+        jPanel1.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
+        txtNombre1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtNombre1.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre1.setText("Nombre:");
+        jPanel1.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+
+        txtContraseña1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtContraseña1.setForeground(new java.awt.Color(255, 255, 255));
+        txtContraseña1.setText("Contraseña");
+        jPanel1.add(txtContraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
+
+        txtRegistroUsuario.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        txtRegistroUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtRegistroUsuario.setText("Registro de Usuario");
+        jPanel1.add(txtRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
+
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 220, 30));
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 220, 30));
+
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 220, 30));
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 220, 30));
+
+        btnCrearUsuario.setBackground(new java.awt.Color(100, 160, 100));
+        btnCrearUsuario.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnCrearUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnCrearUsuario.setText("CREAR");
         btnCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
+        jPanel1.add(btnCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 100, 40));
 
+        btnCancelar.setBackground(new java.awt.Color(170, 90, 90));
+        btnCancelar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
-        jPanel1.add(txtContrasenaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 140, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 100, 40));
 
-        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreUsuarioActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 140, -1));
+        txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
+        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -250, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreUsuarioActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         Login login = new Login();
@@ -107,8 +157,8 @@ public class CrearUsuario extends javax.swing.JFrame {
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
         try {
         // 1️⃣ Obtener datos del formulario
-        String nombre = txtNombreUsuario.getText().trim();
-        String contrasena = txtContrasenaUsuario.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String contrasena = txtApellido.getText().trim();
 
         // Validar campos vacíos
         if (nombre.isEmpty() || contrasena.isEmpty()) {
@@ -150,14 +200,32 @@ public class CrearUsuario extends javax.swing.JFrame {
 }// TODO add your handling code here:
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCrearUsuario;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtContrasenaUsuario;
-    private javax.swing.JTextField txtNombreUsuario;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JLabel txtApellido1;
+    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JLabel txtContraseña1;
+    private javax.swing.JLabel txtFondo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JLabel txtNombre1;
+    private javax.swing.JLabel txtRegistroUsuario;
+    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JLabel txtUsuario1;
     // End of variables declaration//GEN-END:variables
 }

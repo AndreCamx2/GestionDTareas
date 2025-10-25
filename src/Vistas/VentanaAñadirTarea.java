@@ -30,6 +30,11 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         initComponents();
         this.modeloTabla = modelo;
         this.tareaDAO = new TareaDAO();
+        
+        
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setSize(500,450);
     }
 
     /**
@@ -42,7 +47,8 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        tituloAñadirtarea = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblAsignatura = new javax.swing.JLabel();
         lblFechaInicio = new javax.swing.JLabel();
@@ -52,135 +58,86 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         txtFechainicio = new com.toedter.calendar.JDateChooser();
         txtFechaentrega = new com.toedter.calendar.JDateChooser();
-        txtNombre = new javax.swing.JTextField();
-        tituloAñadirtarea = new javax.swing.JLabel();
+        txtdfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        tituloAñadirtarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        tituloAñadirtarea.setForeground(new java.awt.Color(255, 255, 255));
+        tituloAñadirtarea.setText("Añadir Tarea");
+        jPanel1.add(tituloAñadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 220, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 240, 30));
 
+        lblNombre.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre:");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
+        lblAsignatura.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblAsignatura.setForeground(new java.awt.Color(255, 255, 255));
         lblAsignatura.setText("Asignatura: ");
+        jPanel1.add(lblAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, 30));
 
+        lblFechaInicio.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblFechaInicio.setForeground(new java.awt.Color(255, 255, 255));
         lblFechaInicio.setText("Fecha de inicio:");
+        jPanel1.add(lblFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
 
+        lblFechaEntrega.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblFechaEntrega.setForeground(new java.awt.Color(255, 255, 255));
         lblFechaEntrega.setText("Fecha de entrega:");
+        jPanel1.add(lblFechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
         txtAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAsignaturaActionPerformed(evt);
             }
         });
+        jPanel1.add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 230, 30));
 
-        btnGuardar.setBackground(new java.awt.Color(255, 102, 102));
-        btnGuardar.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
+        btnGuardar.setBackground(new java.awt.Color(100, 160, 100));
+        btnGuardar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/aprobar.png"))); // NOI18N
+        btnGuardar.setText(" Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 150, 40));
 
-        btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
-        btnCancelar.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
+        btnCancelar.setBackground(new java.awt.Color(170, 90, 90));
+        btnCancelar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cancelar.png"))); // NOI18N
+        btnCancelar.setText(" Cancelar");
+        btnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 150, 40));
+        jPanel1.add(txtFechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 180, 30));
+        jPanel1.add(txtFechaentrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 200, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAsignatura)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(lblFechaInicio)
-                                        .addGap(31, 31, 31))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblFechaEntrega)
-                                        .addGap(18, 18, 18))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(221, 221, 221)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaentrega, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(txtFechainicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(125, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNombre)
-                        .addComponent(lblFechaInicio)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFechaEntrega)
-                    .addComponent(txtFechaentrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAsignatura)
-                    .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
+        txtdfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
+        jPanel1.add(txtdfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, -450, 2120, 1300));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 410));
-
-        tituloAñadirtarea.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
-        tituloAñadirtarea.setForeground(new java.awt.Color(255, 255, 255));
-        tituloAñadirtarea.setText("Añadir Tarea");
-        jPanel1.add(tituloAñadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 270, 30));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 690, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,51 +152,48 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-        // 1️⃣ Obtener datos del formulario
-        String nombre = txtNombre.getText().trim();
-        String asignatura = txtAsignatura.getText().trim();
-        LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate();
+            // 1️⃣ Obtener datos del formulario
+            String nombre = txtNombre.getText().trim();
+            String asignatura = txtAsignatura.getText().trim();
+            LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
+            .atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
+            .atZone(ZoneId.systemDefault()).toLocalDate();
 
-        // Validar que no haya campos vacíos
-        if (nombre.isEmpty() || asignatura.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
-            return;
+            // Validar que no haya campos vacíos
+            if (nombre.isEmpty() || asignatura.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
+                return;
+            }
+
+            // 2️⃣ Crear objeto Tarea
+            Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega);
+
+            // 3️⃣ Guardar en archivo TXT
+            boolean guardado = tareaDAO.registrarTarea(tarea);
+
+            // 4️⃣ Si se guarda bien, agregar a la tabla
+            if (guardado) {
+                modeloTabla.addRow(new Object[]{
+                    modeloTabla.getRowCount() + 1,  // Posición (automática)
+                    tarea.getNombre(),              // Nombre
+                    tarea.getId(),                  // ID autogenerado
+                    tarea.getAsignatura(),          // Asignatura
+                    tarea.getFechaInicio(),         // Fecha de inicio
+                    tarea.getFechaEntrega(),        // Fecha de entrega
+                    tarea.getPrioridad()            // Prioridad calculada
+                });
+
+                JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
+                this.dispose(); // Cierra la ventana al terminar
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "❌  Prueba Error al guardar la tarea: " + e.getMessage());
+            e.printStackTrace();
         }
 
-        // 2️⃣ Crear objeto Tarea
-        Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega);
-
-        // 3️⃣ Guardar en archivo TXT
-        boolean guardado = tareaDAO.registrarTarea(tarea);
-
-        // 4️⃣ Si se guarda bien, agregar a la tabla
-        if (guardado) {
-            modeloTabla.addRow(new Object[]{
-                modeloTabla.getRowCount() + 1,  // Posición (automática)
-                tarea.getNombre(),              // Nombre
-                tarea.getId(),                  // ID autogenerado
-                tarea.getAsignatura(),          // Asignatura
-                tarea.getFechaInicio(),         // Fecha de inicio
-                tarea.getFechaEntrega(),        // Fecha de entrega
-                tarea.getPrioridad()            // Prioridad calculada
-            });
-            
-            
-
-            JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
-            this.dispose(); // Cierra la ventana al terminar
-            
-        }
-        
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "❌  Prueba Error al guardar la tarea: " + e.getMessage());
-        e.printStackTrace();
-    }
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -256,7 +210,6 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAsignatura;
     private javax.swing.JLabel lblFechaEntrega;
     private javax.swing.JLabel lblFechaInicio;
@@ -266,5 +219,6 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser txtFechaentrega;
     private com.toedter.calendar.JDateChooser txtFechainicio;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JLabel txtdfondo;
     // End of variables declaration//GEN-END:variables
 }
