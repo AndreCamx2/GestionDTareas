@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Modelos.Usuario;
 import Vistas.CrearUsuario;
 import Vistas.OpcionesTareas;
 import Vistas.VentanaPrincipal;
@@ -125,7 +126,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-                                           
+
+
     String usuarioIngresado = txtUsuario.getText().trim();
     String contrasenaIngresada = new String(txtContrasena.getPassword()).trim();
 
@@ -134,51 +136,18 @@ public class Login extends javax.swing.JFrame {
         return;
     }
 
-    boolean acceso = false;
+    // ✅ Usar el nuevo sistema con usuarios.dat
+    DAO.ListaUsuarios listaUsuarios = new DAO.ListaUsuarios();
+    Usuario encontrado = listaUsuarios.buscarUsuario(usuarioIngresado);
 
-    File carpeta = new File("C:\\Users\\HP\\OneDrive\\Documents\\NetBeansProjects\\GESTOR_DE_TAREAS\\USUARIOS_txt\\");
-    File[] archivos = carpeta.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
+    if (encontrado != null && encontrado.getContrasena().equals(contrasenaIngresada)) {
+        JOptionPane.showMessageDialog(this, "✅ Inicio de sesión exitoso");
 
-    if (archivos == null || archivos.length == 0) {
-        JOptionPane.showMessageDialog(this, "⚠️ No hay usuarios registrados.");
-        return;
-    }
+        OpcionesTareas opcionesTareas = new OpcionesTareas(encontrado.getNombreUsuario());
+opcionesTareas.setVisible(true);
+this.dispose();
 
-    for (File archivo : archivos) {
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-
-            String usuario = "";
-            String contrasena = "";
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-                if (linea.startsWith("Usuario:")) {
-                    usuario = linea.substring(8).trim();
-                }
-                if (linea.startsWith("Contrasena:")) {
-                    contrasena = linea.substring(11).trim();
-                }
-            }
-
-            if (usuario.equals(usuarioIngresado) && contrasena.equals(contrasenaIngresada)) {
-                acceso = true;
-                break;
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                "❌ Error al leer archivo: " + archivo.getName());
-        }
-    }
-
-    if (acceso) {
-    JOptionPane.showMessageDialog(this, "✅ Inicio de sesión exitoso");
-
-    OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioIngresado);
-    opcionesTareas.setVisible(true);
-    this.dispose();
-}
- else {
+    } else {
         JOptionPane.showMessageDialog(this, "❌ Usuario o contraseña incorrectos");
     }
         // TODO add your handling code here:
@@ -230,6 +199,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;

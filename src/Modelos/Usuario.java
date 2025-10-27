@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos;
 
-/**
- *
- * @author HP
- */
+import java.io.Serializable;
 
-public class Usuario {
-    
-    private String nombre;
-    private String contrasena;
+public class Usuario implements Serializable {
 
-    public Usuario(String nombre, String contrasena) {
+    private String nombre;       // nombre real
+    private String nombreUsuario; // usuario para login
+    private String contrasena;   // contraseña
+
+    public Usuario(String nombre, String nombreUsuario, String contrasena) {
         this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
     }
 
@@ -23,13 +18,14 @@ public class Usuario {
         return nombre;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
     public String getContrasena() {
         return contrasena;
     }
     
-    
-    
-    
-    
 }
+
 

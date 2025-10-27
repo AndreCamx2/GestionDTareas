@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/andre/OneDrive/Documents/NetBeansProjects/GESTOR-DE-TAREASS/src/Vistas/CrearUsuario.java</file>
-            <file>file:/C:/Users/andre/OneDrive/Documents/NetBeansProjects/GESTOR-DE-TAREASS/src/Vistas/VentanaAñadirTarea.java</file>
-            <file>file:/C:/Users/andre/OneDrive/Documents/NetBeansProjects/GESTOR-DE-TAREASS/src/Vistas/VentanaPrincipal.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Vistas/VentanaAñadirTarea.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Modelos/Tarea.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Vistas/VentanaPrincipal.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/DAO/TareaDAO.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Vistas/Login.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Vistas/OpcionesTareas.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Modelos/Usuario.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Desktop/proyecto/GestionDTareas/src/Vistas/CrearUsuario.java</file>
         </group>
     </open-files>
 </project-private>

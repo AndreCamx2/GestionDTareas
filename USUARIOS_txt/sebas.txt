@@ -1,3 +1,0 @@
-=== DATOS DEL USUARIO ===
-Usuario: sebas
-Contrasena: 1234

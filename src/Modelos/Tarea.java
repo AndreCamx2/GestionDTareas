@@ -8,10 +8,14 @@ package Modelos;
  *
  * @author HP
  */
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Tarea {
+public class Tarea implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static int contador = 1; // Para generar ID automático
     private int id;
@@ -29,48 +33,24 @@ public class Tarea {
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
         this.prioridad = calcularPrioridad();
-        this.usuario= usuario;
+        this.usuario = usuario;
     }
 
-    
-
-    // 🧠 Método para actualizar prioridad si pasa el tiempo
+    // 🧠 Método para actualizar prioridad según el tiempo
     public void actualizarPrioridad() {
         this.prioridad = calcularPrioridad();
     }
 
     // Getters
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getAsignatura() { return asignatura; }
+    public LocalDate getFechaInicio() { return fechaInicio; }
+    public LocalDate getFechaEntrega() { return fechaEntrega; }
+    public String getPrioridad() { return prioridad; }
+    public String getUsuario() { return usuario; }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getAsignatura() {
-        return asignatura;
-    }
-
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public LocalDate getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public String getPrioridad() {
-        return prioridad;
-    }
-    public String getUsuario() {
-        return usuario;
-    }
-    
-    
-    
-    
-    // METODO Calcula la prioridad automáticamente
+    // Calcula prioridad automáticamente ⏳
     public String calcularPrioridad() {
         LocalDate hoy = LocalDate.now();
         long diasRestantes = ChronoUnit.DAYS.between(hoy, fechaEntrega);
@@ -81,10 +61,8 @@ public class Tarea {
             return "Alta";
         } else if (diasRestantes <= 4) {
             return "Media";
-        } else if (diasRestantes >=5) {
+        } else {
             return "Baja";
-        } 
-        return null;
-           
+        }
     }
 }
