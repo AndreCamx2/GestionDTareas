@@ -1,7 +1,0 @@
-=== DATOS DE LA TAREA ===
-ID: 7
-Nombre: dd
-Asignatura: dd
-Fecha de inicio: 2025-10-22
-Fecha de entrega: 2025-10-26
-Prioridad: Media

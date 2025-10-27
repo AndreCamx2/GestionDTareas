@@ -1,7 +1,0 @@
-=== DATOS DE LA TAREA ===
-ID: 2
-Nombre: qw
-Asignatura: qw
-Fecha de inicio: 2025-10-22
-Fecha de entrega: 2025-10-31
-Prioridad: Sin prioridad

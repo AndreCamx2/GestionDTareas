@@ -46,10 +46,11 @@ public class Login extends javax.swing.JFrame {
         txtContrasena = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         btnRegistrarUsuario = new javax.swing.JButton();
+        txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 400));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,42 +58,42 @@ public class Login extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 204));
         lblTitulo.setText("GESTOR DE TAREAS ");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 250, 110));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 250, 110));
 
         lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuario.setText("Usuario:");
-        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 60, 20));
+        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 70, 20));
 
-        lblContrasena.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        lblContrasena.setForeground(new java.awt.Color(255, 255, 204));
+        lblContrasena.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
         lblContrasena.setText("Contraseña:");
-        jPanel1.add(lblContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        jPanel1.add(lblContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 170, 30));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 170, 30));
 
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 170, 30));
+        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 170, 30));
 
-        btnIngresar.setBackground(new java.awt.Color(255, 153, 153));
-        btnIngresar.setForeground(new java.awt.Color(255, 0, 0));
+        btnIngresar.setBackground(new java.awt.Color(60, 179, 113));
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 110, 50));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 90, 20));
 
         btnRegistrarUsuario.setText("Registrarse");
         btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,12 @@ public class Login extends javax.swing.JFrame {
                 btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 100, -1));
+        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 100, -1));
+
+        txtFondo.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        txtFondo.setForeground(new java.awt.Color(255, 255, 204));
+        txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
+        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -70, 1180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,6 +245,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JLabel txtFondo;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

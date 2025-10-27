@@ -17,6 +17,10 @@ public class OpcionesTareas extends javax.swing.JFrame {
         this.usuario= usuario;
         initComponents();
         
+        
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setSize(500,450);
     }
 
     /**
@@ -29,66 +33,56 @@ public class OpcionesTareas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtTareaCoop = new javax.swing.JLabel();
+        txtTareaIndividual = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        btnTrabajoIndividual = new javax.swing.JButton();
+        txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        txtTareaCoop.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtTareaCoop.setForeground(new java.awt.Color(255, 255, 255));
+        txtTareaCoop.setText("tareas cooperativas");
+        jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 180, 30));
+
+        txtTareaIndividual.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtTareaIndividual.setForeground(new java.awt.Color(255, 255, 255));
+        txtTareaIndividual.setText("tareas individuales");
+        jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 180, 30));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo-en-equipo.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 100, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 180, 160));
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 100, 30));
+        btnTrabajoIndividual.setBackground(new java.awt.Color(102, 102, 102));
+        btnTrabajoIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo individual.png"))); // NOI18N
+        btnTrabajoIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrabajoIndividualActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 180, 160));
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 102));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
-
-        jPanel3.setBackground(new java.awt.Color(102, 255, 102));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
+        txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
+        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -320, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
         );
 
         pack();
@@ -100,12 +94,17 @@ public class OpcionesTareas extends javax.swing.JFrame {
     this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnTrabajoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoIndividualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTrabajoIndividualActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTrabajoIndividual;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel txtFondo;
+    private javax.swing.JLabel txtTareaCoop;
+    private javax.swing.JLabel txtTareaIndividual;
     // End of variables declaration//GEN-END:variables
 }

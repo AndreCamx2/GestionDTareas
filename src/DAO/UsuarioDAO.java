@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class UsuarioDAO {
 
     private static final String DIRECTORIO_USUARIOS = 
-            "C:\\Users\\HP\\OneDrive\\Documents\\NetBeansProjects\\GESTOR_DE_TAREAS\\USUARIOS_txt\\";
+            "C:\\Users\\andre\\OneDrive\\Documents\\NetBeansProjects\\GESTOR-DE-TAREASS\\USUARIOS_txt";
 
     // ✅ Constructor: Crea la carpeta si no existe
     public UsuarioDAO() {
