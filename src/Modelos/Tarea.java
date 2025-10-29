@@ -8,12 +8,15 @@ package Modelos;
  *
  * @author HP
  */
+
+import java.io.Serializable;
 import java.time.LocalDate;
+
 import java.time.temporal.ChronoUnit;
 
-public class Tarea {
+public class Tarea implements Serializable {
 
-    private static int contador = 1; // Para generar ID automático
+    private static int contador = 1; // Genera ID automático
     private int id;
     private String nombre;
     private String asignatura;
@@ -28,18 +31,11 @@ public class Tarea {
         this.asignatura = asignatura;
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
-        this.prioridad = calcularPrioridad();
-        this.usuario= usuario;
-    }
-
-    
-
-    // 🧠 Método para actualizar prioridad si pasa el tiempo
-    public void actualizarPrioridad() {
+        this.usuario = usuario;
         this.prioridad = calcularPrioridad();
     }
 
-    // Getters
+    // Getters y setters
     public int getId() {
         return id;
     }
@@ -48,29 +44,51 @@ public class Tarea {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getAsignatura() {
         return asignatura;
+    }
+
+    public void setAsignatura(String asignatura) {
+        this.asignatura = asignatura;
     }
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
     public LocalDate getFechaEntrega() {
         return fechaEntrega;
+    }
+
+    public void setFechaEntrega(LocalDate fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
     public String getPrioridad() {
         return prioridad;
     }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
     public String getUsuario() {
         return usuario;
     }
-    
-    
-    
-    
-    // METODO Calcula la prioridad automáticamente
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    // Calcula prioridad automáticamente ⏳
     public String calcularPrioridad() {
         LocalDate hoy = LocalDate.now();
         long diasRestantes = ChronoUnit.DAYS.between(hoy, fechaEntrega);
@@ -81,10 +99,10 @@ public class Tarea {
             return "Alta";
         } else if (diasRestantes <= 4) {
             return "Media";
-        } else if (diasRestantes >=5) {
+        } else {
             return "Baja";
-        } 
-        return null;
-           
+        }
     }
 }
+            
+

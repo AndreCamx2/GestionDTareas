@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import DAO.TareaDAO;
+import DAO.ListaTareas;
 import Modelos.Tarea;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaAñadirTarea extends javax.swing.JFrame {
 
     private DefaultTableModel modeloTabla; // referencia al modelo de la tabla principal
-    private TareaDAO tareaDAO;
+    private ListaTareas listaTareas;
     private String usuario; 
     /**
      * Creates new form VentanaAñadirTarea
@@ -28,7 +28,7 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
      public VentanaAñadirTarea(DefaultTableModel modelo, String usuario) {
         initComponents();
         this.modeloTabla = modelo;
-        this.tareaDAO = new TareaDAO();
+        this.listaTareas = new ListaTareas();
         this.usuario = usuario;
     
         
@@ -151,52 +151,56 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-try {
-        // 1️⃣ Obtener datos del formulario
+ try {
         String nombre = txtNombre.getText().trim();
         String asignatura = txtAsignatura.getText().trim();
-        LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-        
 
-        // Validar que no haya campos vacíos
         if (nombre.isEmpty() || asignatura.isEmpty()) {
             JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
             return;
         }
 
-        // 2️⃣ Crear objeto Tarea
+        if (txtFechainicio.getDate() == null || txtFechaentrega.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "⚠️ Debes seleccionar ambas fechas.");
+            return;
+        }
+
+        LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
+                .atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if (fechaEntrega.isBefore(fechaInicio)) {
+            JOptionPane.showMessageDialog(this, "⚠️ La fecha de entrega no puede ser antes de la fecha de inicio.");
+            return;
+        }
+
+        // Crear tarea
         Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
 
-        // 3️⃣ Guardar en archivo TXT
-        boolean guardado = tareaDAO.registrarTarea(tarea);
+        // ✅ Insertar tarea en la lista y guardar en archivo inmediatamente
+        listaTareas.insertarTarea(tarea);
+        listaTareas.guardar(); // <--- esto asegura que VentanaPrincipal pueda leerla
 
-        // 4️⃣ Si se guarda bien, agregar a la tabla
-        if (guardado) {
-            modeloTabla.addRow(new Object[]{
-                modeloTabla.getRowCount() + 1,  // Posición (automática)
-                tarea.getNombre(),              // Nombre
-                tarea.getId(),                  // ID autogenerado
-                tarea.getAsignatura(),          // Asignatura
-                tarea.getFechaInicio(),         // Fecha de inicio
-                tarea.getFechaEntrega(),        // Fecha de entrega
-                tarea.getPrioridad()            // Prioridad calculada
-            });
-            
-            
+        // Agregar inmediatamente al modelo de tabla
+        modeloTabla.addRow(new Object[]{
+            modeloTabla.getRowCount() + 1,
+            tarea.getNombre(),
+            tarea.getId(),
+            tarea.getAsignatura(),
+            tarea.getFechaInicio(),
+            tarea.getFechaEntrega(),
+            tarea.getPrioridad()
+        });
 
-            JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
-            this.dispose(); // Cierra la ventana al terminar
-            
-        }
-        
+        JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
+        this.dispose(); // Cierra ventana añadir tarea
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "❌ Error al guardar la tarea: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "❌ Error al guardar tarea: " + e.getMessage());
         e.printStackTrace();
     }
+
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
