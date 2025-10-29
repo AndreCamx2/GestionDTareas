@@ -4,23 +4,16 @@
  */
 package Vistas;
 
-import DAO.UsuarioDAO;
+import DAO.ListaUsuarios;
 import Modelos.Usuario;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author HP
- */
 public class CrearUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CrearUsuario
-     */
     public CrearUsuario() {
         initComponents();
+        setLocationRelativeTo(null); // Centrar ventana
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,51 +147,42 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
-        try {
-        // 1️⃣ Obtener datos del formulario
+try {
         String nombre = txtNombre.getText().trim();
         String apellido = txtApellido.getText().trim();
         String nombreUsuario = txtNombreUsuario.getText().trim();
         String contrasena = txtContrasenaUsuario.getText().trim();
 
-        // Validar campos vacíos
-        if (nombre.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "⚠️ Todos los campos son obligatorios.");
+        if (nombre.isEmpty() || apellido.isEmpty() || nombreUsuario.isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
             return;
         }
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        ListaUsuarios listaUsuarios = new ListaUsuarios();
 
-        // 2️⃣ Verificar si el usuario ya existe
-        if (usuarioDAO.usuarioExiste(nombre)) {
-            JOptionPane.showMessageDialog(this,
-                "❌ El usuario ya existe. Elige otro nombre.");
+        if (listaUsuarios.usuarioExiste(nombreUsuario)) {
+            JOptionPane.showMessageDialog(this, "❌ El nombre de usuario ya está en uso.");
             return;
         }
 
-        // 3️⃣ Crear objeto Usuario
-        Usuario nuevoUsuario = new Usuario(nombre, contrasena);
+        Usuario nuevoUsuario = new Usuario(nombre, apellido, nombreUsuario, contrasena);
 
-        // 4️⃣ Guardar en archivo
-        boolean guardado = usuarioDAO.registrarUsuario(nuevoUsuario);
-
-        // 5️⃣ Si todo va bien
-        if (guardado) {
-            JOptionPane.showMessageDialog(this,
-                "✅ Usuario registrado exitosamente.");
-
-            // Volver al login
-            Login login = new Login();
-            login.setVisible(true);
-            this.dispose(); // cerrar ventana de crear usuario
+        // ✅ Guardar usuario y persistir inmediatamente
+        boolean guardado = listaUsuarios.agregarUsuario(nuevoUsuario);
+        if (!guardado) {
+            JOptionPane.showMessageDialog(this, "❌ No se pudo guardar el usuario.");
+            return;
         }
+
+        JOptionPane.showMessageDialog(this, "✅ Usuario registrado exitosamente.");
+        new Login().setVisible(true);
+        this.dispose();
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this,
-            "❌ Error al registrar usuario: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "❌ Error al registrar usuario: " + e.getMessage());
         e.printStackTrace();
-}// TODO add your handling code here:
+    }
+
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed

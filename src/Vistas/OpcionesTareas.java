@@ -89,13 +89,13 @@ public class OpcionesTareas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaPrincipal ventana = new VentanaPrincipal(usuario);
-    ventana.setVisible(true);
-    this.dispose();// TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnTrabajoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoIndividualActionPerformed
-        // TODO add your handling code here:
+          VentanaPrincipal ventana = new VentanaPrincipal(usuario);
+    ventana.setVisible(true);
+    this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_btnTrabajoIndividualActionPerformed
 
 

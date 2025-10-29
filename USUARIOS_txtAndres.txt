@@ -1,3 +1,0 @@
-=== DATOS DEL USUARIO ===
-Usuario: Andres
-Contrasena: 1234

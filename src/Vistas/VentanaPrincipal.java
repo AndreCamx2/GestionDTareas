@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import DAO.TareaDAO;
+import DAO.ListaTareas;
 import Modelos.Tarea;
 import Modelos.Usuario;
 import java.util.List;
@@ -21,7 +21,7 @@ private String usuarioLogeado;
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal(String usuario) {
+     public VentanaPrincipal(String usuario) {
         initComponents();
         this.usuarioLogeado = usuario;
         DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
@@ -29,24 +29,30 @@ private String usuarioLogeado;
            cargarTareasEnTabla();
     }
     
- private void cargarTareasEnTabla() {
-    TareaDAO dao = new TareaDAO();
-    List<Tarea> tareas = dao.cargarTareasDesdeArchivos();
+private void cargarTareasEnTabla() {
+    try {
+        ListaTareas listaTareas = new ListaTareas();
+        listaTareas.cargar(); // Cargar tareas desde archivo .DAT
 
-    DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
-    modelo.setRowCount(0); // limpia la tabla antes de llenar
+        DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
+        modelo.setRowCount(0); // limpiar tabla
 
-    int pos = 1;
-    for (Tarea t : tareas) {
-        modelo.addRow(new Object[]{
-            pos++,                               // Posición
-            t.getNombre(),                        // Nombre
-            t.getId(),                            // ID
-            t.getAsignatura(),                    // Asignatura
-            t.getFechaInicio(),                   // Fecha de inicio
-            t.getFechaEntrega(),                  // Fecha de entrega
-            t.getPrioridad()                      // Prioridad
-        });
+        int pos = 1;
+        for (Tarea t : listaTareas.getLista()) {
+            if (t.getUsuario().equals(usuarioLogeado)) { // ✅ Solo las del usuario logeado
+                modelo.addRow(new Object[]{
+                    pos++,
+                    t.getNombre(),
+                    t.getId(),
+                    t.getAsignatura(),
+                    t.getFechaInicio(),
+                    t.getFechaEntrega(),
+                    t.getPrioridad()
+                });
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error cargando tareas: " + e.getMessage());
     }
 }
 
@@ -185,7 +191,7 @@ private String usuarioLogeado;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnadirtareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirtareaActionPerformed
-    DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
+DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
    
         // Abrimos la ventana de Añadir tareas
     VentanaAñadirTarea ventanaAñadirTarea = new VentanaAñadirTarea(modelo, usuarioLogeado);
@@ -197,8 +203,7 @@ private String usuarioLogeado;
     public void windowClosed(java.awt.event.WindowEvent e) {
         cargarTareasEnTabla(); // 🔁 Se actualiza y se reordena automáticamente
     }
-});
-        // TODO add your handling code here:
+}); // TODO add your handling code here:
     }//GEN-LAST:event_btnAnadirtareaActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
