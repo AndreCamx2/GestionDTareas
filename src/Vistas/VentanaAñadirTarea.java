@@ -4,7 +4,6 @@
  */
 package Vistas;
 
-
 import DAO.ListaTareas;
 import Modelos.Tarea;
 import java.time.*;
@@ -152,12 +151,10 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-                                         
-    try {
+ try {
         String nombre = txtNombre.getText().trim();
         String asignatura = txtAsignatura.getText().trim();
 
-        // Validación de campos vacíos
         if (nombre.isEmpty() || asignatura.isEmpty()) {
             JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
             return;
@@ -168,27 +165,25 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
             return;
         }
 
-        // Convertir fechas
         LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
                 .atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
                 .atZone(ZoneId.systemDefault()).toLocalDate();
 
-        // Validar orden de fechas
         if (fechaEntrega.isBefore(fechaInicio)) {
             JOptionPane.showMessageDialog(this, "⚠️ La fecha de entrega no puede ser antes de la fecha de inicio.");
             return;
         }
 
-        // Crear objeto tarea
+        // Crear tarea
         Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
 
-        // Guardar en archivo
-        ListaTareas listaTareas = new ListaTareas();
+        // ✅ Insertar tarea en la lista y guardar en archivo inmediatamente
         listaTareas.insertarTarea(tarea);
+        listaTareas.guardar(); // <--- esto asegura que VentanaPrincipal pueda leerla
 
-        // Agregar en tabla
-        modeloTabla.addRow(new Object[] {
+        // Agregar inmediatamente al modelo de tabla
+        modeloTabla.addRow(new Object[]{
             modeloTabla.getRowCount() + 1,
             tarea.getNombre(),
             tarea.getId(),
@@ -199,16 +194,15 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         });
 
         JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
-        this.dispose();
+        this.dispose(); // Cierra ventana añadir tarea
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, 
-            "❌ Error al guardar tarea: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "❌ Error al guardar tarea: " + e.getMessage());
         e.printStackTrace();
     }
 
-
-
+        
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAsignaturaActionPerformed

@@ -6,22 +6,14 @@ package Vistas;
 
 import DAO.ListaUsuarios;
 import Modelos.Usuario;
-import Vistas.Login;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author HP
- */
 public class CrearUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CrearUsuario
-     */
     public CrearUsuario() {
         initComponents();
+        setLocationRelativeTo(null); // Centrar ventana
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,55 +147,42 @@ public class CrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
-                                                      
-    try {
-        // Obtener datos
+try {
         String nombre = txtNombre.getText().trim();
         String apellido = txtApellido.getText().trim();
         String nombreUsuario = txtNombreUsuario.getText().trim();
         String contrasena = txtContrasenaUsuario.getText().trim();
 
-        // Validar datos vacíos
-        if (nombre.isEmpty() || apellido.isEmpty() ||
-            nombreUsuario.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "⚠️ Todos los campos son obligatorios.");
+        if (nombre.isEmpty() || apellido.isEmpty() || nombreUsuario.isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
             return;
         }
 
-        ListaUsuarios list_usuario = new ListaUsuarios();
+        ListaUsuarios listaUsuarios = new ListaUsuarios();
 
-        // Validar si ya existe el usuario
-        if (list_usuario.usuarioExiste(nombreUsuario)) {
-            JOptionPane.showMessageDialog(this,
-                "❌ El nombre de usuario ya está en uso.");
+        if (listaUsuarios.usuarioExiste(nombreUsuario)) {
+            JOptionPane.showMessageDialog(this, "❌ El nombre de usuario ya está en uso.");
             return;
         }
 
-        // Crear usuario (nombre real = nombre + apellido)
-        Usuario nuevoUsuario = new Usuario(
-                nombre + " " + apellido,
-                nombreUsuario,
-                contrasena
-        );
+        Usuario nuevoUsuario = new Usuario(nombre, apellido, nombreUsuario, contrasena);
 
-        // Guardar en archivo
-        boolean guardado = list_usuario.agregarUsuario(nuevoUsuario);
-
-        if (guardado) {
-            JOptionPane.showMessageDialog(this,
-                "✅ Usuario registrado exitosamente.");
-
-            new Login().setVisible(true);
-            this.dispose();
+        // ✅ Guardar usuario y persistir inmediatamente
+        boolean guardado = listaUsuarios.agregarUsuario(nuevoUsuario);
+        if (!guardado) {
+            JOptionPane.showMessageDialog(this, "❌ No se pudo guardar el usuario.");
+            return;
         }
+
+        JOptionPane.showMessageDialog(this, "✅ Usuario registrado exitosamente.");
+        new Login().setVisible(true);
+        this.dispose();
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this,
-            "❌ Error al registrar usuario: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "❌ Error al registrar usuario: " + e.getMessage());
         e.printStackTrace();
+    }
 
-}// TODO add your handling code here:
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed

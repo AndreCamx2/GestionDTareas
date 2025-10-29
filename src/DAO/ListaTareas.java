@@ -1,16 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
-/**
- *
- * @author HP
- */
-
 import Modelos.Tarea;
-import Modelos.Usuario;
 import java.io.*;
 import java.util.LinkedList;
 
@@ -20,11 +10,21 @@ public class ListaTareas {
 
     public ListaTareas() {
         lista = new LinkedList<>();
-        cargar(); // Siempre intentar cargar archivo al iniciar
+        try {
+            cargar();
+        } catch (Exception e) {
+            System.out.println("Creando nuevo archivo de tareas...");
+        }
     }
 
     public LinkedList<Tarea> getLista() {
         return lista;
+    }
+
+    public void listarTareas() {
+        for (Tarea t : lista) {
+            System.out.println(t.getId() + " - " + t.getNombre());
+        }
     }
 
     public void insertarTarea(Tarea tarea) {
@@ -33,21 +33,23 @@ public class ListaTareas {
     }
 
     public boolean eliminarTarea(int id) {
+        boolean estado = false;
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId() == id) {
                 lista.remove(i);
                 guardar();
-                return true;
+                estado = true;
+                break;
             }
         }
-        return false;
+        return estado;
     }
 
     public void guardar() {
         try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("archivoTareas.dat"))) {
             salida.writeObject(lista);
         } catch (IOException e) {
-            System.out.println("Error al guardar: " + e.getMessage());
+            System.out.println("Error al guardar tareas: " + e.getMessage());
         }
     }
 
@@ -56,25 +58,6 @@ public class ListaTareas {
             lista = (LinkedList<Tarea>) entrada.readObject();
         } catch (IOException | ClassNotFoundException e) {
             lista = new LinkedList<>();
-            System.out.println("Creando nuevo archivo de tareas...");
         }
     }
-public LinkedList<Tarea> obtenerTareasUsuario(String nombreUsuario) {
-    LinkedList<Tarea> filtradas = new LinkedList<>();
-
-    for (Tarea t : lista) {
-        if (t.getUsuario() != null &&
-            t.getUsuario().equalsIgnoreCase(nombreUsuario)) {
-
-            filtradas.add(t);
-        }
-    }
-
-    return filtradas;
 }
-
-
-
-
-}
-

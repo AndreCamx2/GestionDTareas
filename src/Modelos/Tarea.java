@@ -11,13 +11,12 @@ package Modelos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 import java.time.temporal.ChronoUnit;
 
 public class Tarea implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    private static int contador = 1; // Para generar ID automático
+    private static int contador = 1; // Genera ID automático
     private int id;
     private String nombre;
     private String asignatura;
@@ -32,23 +31,62 @@ public class Tarea implements Serializable {
         this.asignatura = asignatura;
         this.fechaInicio = fechaInicio;
         this.fechaEntrega = fechaEntrega;
+        this.usuario = usuario;
         this.prioridad = calcularPrioridad();
+    }
+
+    // Getters y setters
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getAsignatura() {
+        return asignatura;
+    }
+
+    public void setAsignatura(String asignatura) {
+        this.asignatura = asignatura;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(LocalDate fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
-    // 🧠 Método para actualizar prioridad según el tiempo
-    public void actualizarPrioridad() {
-        this.prioridad = calcularPrioridad();
-    }
-
-    // Getters
-    public int getId() { return id; }
-    public String getNombre() { return nombre; }
-    public String getAsignatura() { return asignatura; }
-    public LocalDate getFechaInicio() { return fechaInicio; }
-    public LocalDate getFechaEntrega() { return fechaEntrega; }
-    public String getPrioridad() { return prioridad; }
-    public String getUsuario() { return usuario; }
 
     // Calcula prioridad automáticamente ⏳
     public String calcularPrioridad() {
@@ -66,3 +104,5 @@ public class Tarea implements Serializable {
         }
     }
 }
+            
+

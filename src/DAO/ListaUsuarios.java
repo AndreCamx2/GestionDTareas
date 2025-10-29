@@ -19,60 +19,52 @@ public class ListaUsuarios {
 
     public ListaUsuarios() {
         lista = new LinkedList<>();
-        cargar(); // 📌 Cargar usuarios existentes al iniciar
+        cargar();
     }
 
     public LinkedList<Usuario> getLista() {
         return lista;
     }
 
-    // ✅ Agregar usuario
+    // Insertar un usuario y devolver si se guardó correctamente
     public boolean agregarUsuario(Usuario usuario) {
-    if (usuarioExiste(usuario.getNombreUsuario())) {
-        return false;
-    }
-    lista.add(usuario);
-    guardar();
-    return true;
-}
-
-
-    // ✅ Validar si existe para Login
-    public boolean usuarioExiste(String nombreUsuario) {
-        return lista.stream()
-                .anyMatch(u -> u.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
+        lista.add(usuario);
+        return guardar(); // devuelve true si guardado exitoso
     }
 
-    // ✅ Buscar usuario para Login
+    // Buscar usuario por nombreUsuario
     public Usuario buscarUsuario(String nombreUsuario) {
-        return lista.stream()
-                .filter(u -> u.getNombreUsuario().equalsIgnoreCase(nombreUsuario))
-                .findFirst()
-                .orElse(null);
+        for (Usuario u : lista) {
+            if (u.getNombreUsuario().equalsIgnoreCase(nombreUsuario)) {
+                return u;
+            }
+        }
+        return null;
     }
 
-    // ✅ Eliminar usuario si lo necesitas
-    public boolean eliminarUsuario(String nombreUsuario) {
-        boolean eliminado = lista.removeIf(u -> u.getNombreUsuario().equalsIgnoreCase(nombreUsuario));
-        if (eliminado) guardar();
-        return eliminado;
+    // Verificar existencia de usuario
+    public boolean usuarioExiste(String nombreUsuario) {
+        return buscarUsuario(nombreUsuario) != null;
     }
 
-    // ✅ Guardar datos en archivo .dat
-    public void guardar() {
+    // Guardar lista en archivo y devolver true si se guardó correctamente
+    public boolean guardar() {
         try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("usuarios.dat"))) {
             salida.writeObject(lista);
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error al guardar usuarios: " + e.getMessage());
+            return false;
         }
     }
 
-    // ✅ Cargar datos al iniciar
+    // Cargar lista desde archivo
     public void cargar() {
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("usuarios.dat"))) {
             lista = (LinkedList<Usuario>) entrada.readObject();
-        } catch (Exception e) {
-            // Si no existe el archivo aún, no pasa nada ✅
+        } catch (IOException | ClassNotFoundException e) {
+            lista = new LinkedList<>();
+            System.out.println("Creando nuevo archivo de usuarios...");
         }
     }
 }
