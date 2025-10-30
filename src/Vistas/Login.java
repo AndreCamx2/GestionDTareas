@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         
         setLocationRelativeTo(null);
         setResizable(false);
-        setSize(500,550);
+        setSize(525, 555);
     }
 
     /**
@@ -101,12 +101,12 @@ public class Login extends javax.swing.JFrame {
                 btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 100, -1));
+        jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 100, -1));
 
         txtFondo.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         txtFondo.setForeground(new java.awt.Color(255, 255, 204));
         txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
-        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -70, 1180, -1));
+        jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-230, -270, 1180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
