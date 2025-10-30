@@ -34,7 +34,7 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         
         setLocationRelativeTo(null);
         setResizable(false);
-        setSize(500,450);
+        setSize(500,550);
     }
 
     /**

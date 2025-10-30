@@ -71,10 +71,11 @@ private void cargarTareasEnTabla() {
         tblTareas = new javax.swing.JTable();
         tituloTareas = new javax.swing.JLabel();
         btnAtras = new javax.swing.JButton();
-        btnActualizartarea = new javax.swing.JButton();
+        btnBuscartarea1 = new javax.swing.JButton();
+        btnAdmistrarUsuarios = new javax.swing.JButton();
         btnAnadirtarea = new javax.swing.JButton();
-        btnEliminartarea = new javax.swing.JButton();
-        btnBuscartarea = new javax.swing.JButton();
+        btnAdministrarTareas = new javax.swing.JButton();
+        btnAdmistrarAsignaturas = new javax.swing.JButton();
         txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,12 +128,29 @@ private void cargarTareasEnTabla() {
         });
         jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 110, 40));
 
-        btnActualizartarea.setBackground(new java.awt.Color(100, 140, 170));
-        btnActualizartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnActualizartarea.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/actualizar-tarea.png"))); // NOI18N
-        btnActualizartarea.setText("Actualizar tarea");
-        jPanel1.add(btnActualizartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, -1, 40));
+        btnBuscartarea1.setBackground(new java.awt.Color(120, 120, 160));
+        btnBuscartarea1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnBuscartarea1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscartarea1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/buscar-tarea.png"))); // NOI18N
+        btnBuscartarea1.setText("Buscar tarea");
+        btnBuscartarea1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscartarea1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscartarea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 160, 40));
+
+        btnAdmistrarUsuarios.setBackground(new java.awt.Color(100, 140, 170));
+        btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAdmistrarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdmistrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeUsuarios.png"))); // NOI18N
+        btnAdmistrarUsuarios.setText("Admistrar Usuarios");
+        btnAdmistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmistrarUsuariosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, 40));
 
         btnAnadirtarea.setBackground(new java.awt.Color(100, 160, 100));
         btnAnadirtarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
@@ -145,26 +163,31 @@ private void cargarTareasEnTabla() {
                 btnAnadirtareaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 160, 40));
+        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 160, 40));
 
-        btnEliminartarea.setBackground(new java.awt.Color(170, 90, 90));
-        btnEliminartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnEliminartarea.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/borrar-tarea.png"))); // NOI18N
-        btnEliminartarea.setText("Eliminar tarea");
-        btnEliminartarea.addActionListener(new java.awt.event.ActionListener() {
+        btnAdministrarTareas.setBackground(new java.awt.Color(170, 90, 90));
+        btnAdministrarTareas.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAdministrarTareas.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdministrarTareas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeTareas.png"))); // NOI18N
+        btnAdministrarTareas.setText("Admistrar Tareas");
+        btnAdministrarTareas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminartareaActionPerformed(evt);
+                btnAdministrarTareasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 170, 40));
+        jPanel1.add(btnAdministrarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 190, 40));
 
-        btnBuscartarea.setBackground(new java.awt.Color(120, 120, 160));
-        btnBuscartarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnBuscartarea.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscartarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/buscar-tarea.png"))); // NOI18N
-        btnBuscartarea.setText("Buscar tarea");
-        jPanel1.add(btnBuscartarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 160, 40));
+        btnAdmistrarAsignaturas.setBackground(new java.awt.Color(245, 183, 153));
+        btnAdmistrarAsignaturas.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAdmistrarAsignaturas.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdmistrarAsignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeAsignaturas.png"))); // NOI18N
+        btnAdmistrarAsignaturas.setText("Admistrar Asignaturas");
+        btnAdmistrarAsignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmistrarAsignaturasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdmistrarAsignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, 190, 40));
 
         txtFondo.setBackground(new java.awt.Color(255, 255, 255));
         txtFondo.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
@@ -216,11 +239,23 @@ DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnAtrasActionPerformed
 
-    private void btnEliminartareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminartareaActionPerformed
+    private void btnAdministrarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarTareasActionPerformed
 
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminartareaActionPerformed
+    }//GEN-LAST:event_btnAdministrarTareasActionPerformed
+
+    private void btnAdmistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdmistrarUsuariosActionPerformed
+
+    private void btnBuscartarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscartarea1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscartarea1ActionPerformed
+
+    private void btnAdmistrarAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarAsignaturasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdmistrarAsignaturasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,11 +263,12 @@ DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizartarea;
+    private javax.swing.JButton btnAdministrarTareas;
+    private javax.swing.JButton btnAdmistrarAsignaturas;
+    private javax.swing.JButton btnAdmistrarUsuarios;
     private javax.swing.JButton btnAnadirtarea;
     private javax.swing.JButton btnAtras;
-    private javax.swing.JButton btnBuscartarea;
-    private javax.swing.JButton btnEliminartarea;
+    private javax.swing.JButton btnBuscartarea1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblTareas;
