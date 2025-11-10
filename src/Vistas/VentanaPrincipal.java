@@ -7,55 +7,55 @@ package Vistas;
 import DAO.ListaTareas;
 import Modelos.Tarea;
 import Modelos.Usuario;
+import Vistas.VentanaGestionarTareas;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author HP
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-private String usuarioLogeado;
+
+    String usuarioLogeado;
 
     /**
      * Creates new form VentanaPrincipal
      */
-     public VentanaPrincipal(String usuario) {
+    public VentanaPrincipal(String usuario) {
         initComponents();
         this.usuarioLogeado = usuario;
         DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
         tblTareas.setDefaultEditor(Object.class, null); // Desactiva edición de todas las celdas de la tabla
-           cargarTareasEnTabla();
+        cargarTareasEnTabla(tblTareas);
     }
-    
-private void cargarTareasEnTabla() {
-    try {
-        ListaTareas listaTareas = new ListaTareas();
-        listaTareas.cargar(); // Cargar tareas desde archivo .DAT
 
-        DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
-        modelo.setRowCount(0); // limpiar tabla
+    public void cargarTareasEnTabla(javax.swing.JTable tabla) {
+        try {
+            ListaTareas listaTareas = new ListaTareas();
+            listaTareas.cargar();
 
-        int pos = 1;
-        for (Tarea t : listaTareas.getLista()) {
-            if (t.getUsuario().equals(usuarioLogeado)) { // ✅ Solo las del usuario logeado
-                modelo.addRow(new Object[]{
-                    pos++,
-                    t.getNombre(),
-                    t.getId(),
-                    t.getAsignatura(),
-                    t.getFechaInicio(),
-                    t.getFechaEntrega(),
-                    t.getPrioridad()
-                });
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            modelo.setRowCount(0);
+
+            int pos = 1;
+            for (Tarea t : listaTareas.getLista()) {
+                if (t.getUsuario().equals(usuarioLogeado)) {
+                    modelo.addRow(new Object[]{
+                        pos++,
+                        t.getNombre(),
+                        t.getId(),
+                        t.getAsignatura(),
+                        t.getFechaInicio(),
+                        t.getFechaEntrega(),
+                        t.getPrioridad()
+                    });
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error cargando tareas: " + e.getMessage());
         }
-    } catch (Exception e) {
-        System.out.println("Error cargando tareas: " + e.getMessage());
     }
-}
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,34 +214,34 @@ private void cargarTareasEnTabla() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnadirtareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirtareaActionPerformed
-DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
-   
+        DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
+
         // Abrimos la ventana de Añadir tareas
-    VentanaAñadirTarea ventanaAñadirTarea = new VentanaAñadirTarea(modelo, usuarioLogeado);
-    ventanaAñadirTarea.setVisible(true); 
-    
-    
-    ventanaAñadirTarea.addWindowListener(new java.awt.event.WindowAdapter() {
-    @Override
-    public void windowClosed(java.awt.event.WindowEvent e) {
-        cargarTareasEnTabla(); // 🔁 Se actualiza y se reordena automáticamente
-    }
-}); // TODO add your handling code here:
+        VentanaAñadirTarea ventanaAñadirTarea = new VentanaAñadirTarea(modelo, usuarioLogeado);
+        ventanaAñadirTarea.setVisible(true);
+
+        ventanaAñadirTarea.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                cargarTareasEnTabla(tblTareas); // 🔁 Se actualiza y se reordena automáticamente
+            }
+        }); // TODO add your handling code here:
     }//GEN-LAST:event_btnAnadirtareaActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         // Abrimos la ventana de opciones
-    OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioLogeado);
-    opcionesTareas.setVisible(true);
-    this.dispose(); // Cierra la ventana principal
-
+        OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioLogeado);
+        opcionesTareas.setVisible(true);
+        this.dispose(); // Cierra la ventana principal
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdministrarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarTareasActionPerformed
 
-
+        VentanaGestionarTareas ventana = new VentanaGestionarTareas(this, usuarioLogeado);
+        ventana.setVisible(true);
+        this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdministrarTareasActionPerformed
 
@@ -260,7 +260,6 @@ DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrarTareas;
@@ -275,4 +274,9 @@ DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
     private javax.swing.JLabel tituloTareas;
     private javax.swing.JLabel txtFondo;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTable getTblTareas() {
+        return tblTareas;
+    }
+
 }
