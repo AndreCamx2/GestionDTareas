@@ -54,6 +54,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
         txtTareaIndividual.setText("tareas individuales");
         jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 180, 30));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo-en-equipo.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
