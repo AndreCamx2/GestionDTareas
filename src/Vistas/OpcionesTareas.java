@@ -4,23 +4,29 @@
  */
 package Vistas;
 
+import DAO.ListaUsuarios;
+import Modelos.Usuario;
+import Vistas.VentanaGestionarUsuarios;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
-public class OpcionesTareas extends javax.swing.JFrame {    
-        private String usuario;
+public class OpcionesTareas extends javax.swing.JFrame {
+
+    private String usuario;
+
     /**
      * Creates new form OpcionesTareas
      */
     public OpcionesTareas(String usuario) {
-        this.usuario= usuario;
+        this.usuario = usuario;
         initComponents();
-        
-        
+
         setLocationRelativeTo(null);
         setResizable(false);
-        setSize(500,450);
+        setSize(500, 450);
     }
 
     /**
@@ -37,6 +43,8 @@ public class OpcionesTareas extends javax.swing.JFrame {
         txtTareaIndividual = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btnTrabajoIndividual = new javax.swing.JButton();
+        btnAdmistrarUsuarios = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
         txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,12 +55,12 @@ public class OpcionesTareas extends javax.swing.JFrame {
         txtTareaCoop.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaCoop.setForeground(new java.awt.Color(255, 255, 255));
         txtTareaCoop.setText("tareas cooperativas");
-        jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 180, 30));
+        jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 180, 30));
 
         txtTareaIndividual.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaIndividual.setForeground(new java.awt.Color(255, 255, 255));
         txtTareaIndividual.setText("tareas individuales");
-        jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 180, 30));
+        jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 180, 30));
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo-en-equipo.png"))); // NOI18N
@@ -61,7 +69,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 180, 160));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, 160));
 
         btnTrabajoIndividual.setBackground(new java.awt.Color(102, 102, 102));
         btnTrabajoIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo individual.png"))); // NOI18N
@@ -70,7 +78,32 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnTrabajoIndividualActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 180, 160));
+        jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 160));
+
+        btnAdmistrarUsuarios.setBackground(new java.awt.Color(51, 51, 51));
+        btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAdmistrarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdmistrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeUsuarios.png"))); // NOI18N
+        btnAdmistrarUsuarios.setText("Admistrar Usuarios");
+        btnAdmistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmistrarUsuariosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, 40));
+
+        btnAtras.setBackground(new java.awt.Color(100, 100, 100));
+        btnAtras.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/regresar.png"))); // NOI18N
+        btnAtras.setText("Atras");
+        btnAtras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 100, 40));
 
         txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
         jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -320, -1, -1));
@@ -90,17 +123,84 @@ public class OpcionesTareas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnTrabajoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoIndividualActionPerformed
-          VentanaPrincipal ventana = new VentanaPrincipal(usuario);
-    ventana.setVisible(true);
-    this.dispose();// TODO add your handling code here:
+        VentanaPrincipal ventana = new VentanaPrincipal(usuario);
+        ventana.setVisible(true);
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_btnTrabajoIndividualActionPerformed
+
+    private void btnAdmistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarUsuariosActionPerformed
+
+        // Pedir usuario
+        String usuarioIngresado = JOptionPane.showInputDialog(this, "Ingrese el usuario administrador:");
+        if (usuarioIngresado == null) {
+            return; // Canceló
+        }
+        // Pedir contraseña
+        String contrasenaIngresada = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+        if (contrasenaIngresada == null) {
+            return; // Canceló
+        }
+        // Cargar usuarios desde archivo
+        ListaUsuarios listaUsuarios = new ListaUsuarios();
+        listaUsuarios.cargar();
+
+        boolean accesoPermitido = false;
+
+        // Buscar en la lista
+        for (Usuario u : listaUsuarios.getLista()) {
+
+            // Comparar usuario + contraseña
+            if (u.getNombreUsuario().equals(usuarioIngresado)
+                    && u.getContrasena().equals(contrasenaIngresada)) {
+
+                // Verificar si es el ADMINISTRADOR (Uzui)
+                if (u.getNombreUsuario().equalsIgnoreCase("admin")) {
+                    accesoPermitido = true;
+                }
+
+                break; // Ya encontramos al usuario
+            }
+        }
+
+        if (accesoPermitido) {
+            JOptionPane.showMessageDialog(this, "Acceso permitido. Bienvenido, Administrador.");
+
+            // Cargar usuarios correctamente
+            ListaUsuarios lista = new ListaUsuarios();
+            lista.cargar();
+
+            // Abrir la ventana usando el constructor que SÍ TIENE el listener del clic
+            VentanaGestionarUsuarios admin = new VentanaGestionarUsuarios("Admin", lista );
+            admin.setVisible(true);
+            this.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Usuario o contraseña incorrectos.\nAcceso denegado.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdmistrarUsuariosActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdmistrarUsuarios;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnTrabajoIndividual;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;

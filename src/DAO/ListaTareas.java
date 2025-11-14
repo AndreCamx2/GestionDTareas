@@ -56,8 +56,24 @@ public class ListaTareas {
     public void cargar() {
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("archivoTareas.dat"))) {
             lista = (LinkedList<Tarea>) entrada.readObject();
+
+            // 🔥 Restaurar el contador de IDs según el valor máximo guardado
+            if (!lista.isEmpty()) {
+                int maxId = lista.stream()
+                        .mapToInt(Tarea::getId)
+                        .max()
+                        .orElse(1);
+
+                Tarea.setContador(maxId + 1);
+            }
+
         } catch (IOException | ClassNotFoundException e) {
             lista = new LinkedList<>();
         }
     }
+
+    public void eliminarTodasLasTareasDelUsuario(String usuario) {
+        lista.removeIf(t -> t.getUsuario().equalsIgnoreCase(usuario));
+    }
+
 }

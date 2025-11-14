@@ -9,70 +9,65 @@ import javax.swing.table.DefaultTableModel;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author andre
  */
 public class VentanaGestionarTareas extends javax.swing.JFrame {
-     private ListaTareas listaTareas;
-     private DefaultTableModel modeloTabla;
-     private VentanaPrincipal ventanaPrincipal;
-     private String usuarioLogueado; 
 
-    // ✅ Constructor principal (usa el método cargarTareasEnTabla de la VentanaPrincipal)
-  public VentanaGestionarTareas(VentanaPrincipal ventanaPrincipal, String usuarioLogeado) {
-    initComponents();
-    
-    
-    this.ventanaPrincipal = ventanaPrincipal;
-    this.usuarioLogueado = usuarioLogeado;
+    private ListaTareas listaTareas;
+    private DefaultTableModel modeloTabla;
+    private VentanaPrincipal ventanaPrincipal;
+    private String usuarioLogueado;
 
-    setLocationRelativeTo(null);
-    setResizable(false);
-    tblTareas.setDefaultEditor(Object.class, null);
+    // ✅ Constructor principal 
+    public VentanaGestionarTareas(VentanaPrincipal ventanaPrincipal, String usuarioLogeado) {
+        initComponents();
 
-    // ✅ Usa el método ya existente en la ventana principal
-    ventanaPrincipal.cargarTareasEnTabla(tblTareas);
-    
-    // 🟢 Detectar clic en una fila para llenar los campos
-tblTareas.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int fila = tblTareas.getSelectedRow();
-        if (fila != -1) {
-            // Nombre
-            txtNombreTarea.setText(tblTareas.getValueAt(fila, 1).toString());
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.usuarioLogueado = usuarioLogeado;
 
-            // Asignatura
-            txtAsignatura.setText(tblTareas.getValueAt(fila, 3).toString());
+        setLocationRelativeTo(null);
+        setResizable(false);
+        tblTareas.setDefaultEditor(Object.class, null);
 
-            // Fechas (convertir String a Date)
-            try {
-                String fechaInicioStr = tblTareas.getValueAt(fila, 4).toString();
-                String fechaEntregaStr = tblTareas.getValueAt(fila, 5).toString();
+        // ✅ Usa el método ya existente en la ventana principal
+        ventanaPrincipal.cargarTareasEnTabla(tblTareas);
 
-                java.time.LocalDate fechaIni = java.time.LocalDate.parse(fechaInicioStr);
-                java.time.LocalDate fechaEnt = java.time.LocalDate.parse(fechaEntregaStr);
+        // 🟢 Detectar clic en una fila para llenar los campos
+        tblTareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int fila = tblTareas.getSelectedRow();
+                if (fila != -1) {
+                    // Nombre
+                    txtNombreTarea.setText(tblTareas.getValueAt(fila, 1).toString());
 
-                java.util.Date fechaIniDate = java.util.Date.from(fechaIni.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
-                java.util.Date fechaEntDate = java.util.Date.from(fechaEnt.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+                    // Asignatura
+                    txtAsignatura.setText(tblTareas.getValueAt(fila, 3).toString());
 
-                fechaInicio.setDate(fechaIniDate);
-                fechaEntrega.setDate(fechaEntDate);
+                    // Fechas (convertir String a Date)
+                    try {
+                        String fechaInicioStr = tblTareas.getValueAt(fila, 4).toString();
+                        String fechaEntregaStr = tblTareas.getValueAt(fila, 5).toString();
 
-            } catch (Exception e) {
-                System.out.println("Error al convertir fechas: " + e.getMessage());
+                        java.time.LocalDate fechaIni = java.time.LocalDate.parse(fechaInicioStr);
+                        java.time.LocalDate fechaEnt = java.time.LocalDate.parse(fechaEntregaStr);
+
+                        java.util.Date fechaIniDate = java.util.Date.from(fechaIni.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+                        java.util.Date fechaEntDate = java.util.Date.from(fechaEnt.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
+
+                        fechaInicio.setDate(fechaIniDate);
+                        fechaEntrega.setDate(fechaEntDate);
+
+                    } catch (Exception e) {
+                        System.out.println("Error al convertir fechas: " + e.getMessage());
+                    }
+                }
             }
-        }
+        });
+
     }
-});
-
-
-}
-
-
-
 
     // ✅ Constructor vacío (solo para pruebas o ejecución independiente)
     public VentanaGestionarTareas() {
@@ -84,10 +79,7 @@ tblTareas.addMouseListener(new java.awt.event.MouseAdapter() {
         this.listaTareas = new ListaTareas();
         this.modeloTabla = (DefaultTableModel) tblTareas.getModel();
 
-  
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,109 +238,104 @@ tblTareas.addMouseListener(new java.awt.event.MouseAdapter() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
-                                                 
-                                                
-    int filaSeleccionada = tblTareas.getSelectedRow();
 
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona una tarea para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int filaSeleccionada = tblTareas.getSelectedRow();
 
-    int idTarea = Integer.parseInt(tblTareas.getValueAt(filaSeleccionada, 2).toString());
-
-    int confirmacion = JOptionPane.showConfirmDialog(
-        this,
-        "¿Deseas eliminar esta tarea?",
-        "Confirmar eliminación",
-        JOptionPane.YES_NO_OPTION
-    );
-
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        ListaTareas listaTareas = new ListaTareas();
-        boolean eliminada = listaTareas.eliminarTarea(idTarea);
-
-        if (eliminada) {
-            // ✅ Quita la fila directamente de la tabla
-            DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
-            modelo.removeRow(filaSeleccionada);
-
-            JOptionPane.showMessageDialog(this, "Tarea eliminada correctamente.");
-
-            // ❌ NO volver a llamar a ventanaPrincipal.cargarTareasEnTabla()
-            // (porque eso recarga desde archivo y vuelve a mostrar la antigua)
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró la tarea para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una tarea para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-    }
 
+        int idTarea = Integer.parseInt(tblTareas.getValueAt(filaSeleccionada, 2).toString());
 
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Deseas eliminar esta tarea?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            ListaTareas listaTareas = new ListaTareas();
+            boolean eliminada = listaTareas.eliminarTarea(idTarea);
+
+            if (eliminada) {
+                // ✅ Quita la fila directamente de la tabla
+                DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
+                modelo.removeRow(filaSeleccionada);
+
+                JOptionPane.showMessageDialog(this, "Tarea eliminada correctamente.");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró la tarea para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnActualizarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTareaActionPerformed
-                                                  
-    int filaSeleccionada = tblTareas.getSelectedRow();
 
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona una tarea para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int filaSeleccionada = tblTareas.getSelectedRow();
 
-    try {
-        int id = Integer.parseInt(tblTareas.getValueAt(filaSeleccionada, 2).toString());
-        String nuevoNombre = txtNombreTarea.getText().trim();
-        String nuevaAsignatura = txtAsignatura.getText().trim();
-
-        // Validar fechas (con JDateChooser)
-        if (fechaInicio.getDate() == null || fechaEntrega.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una tarea para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        java.util.Date fechaIniUtil = fechaInicio.getDate();
-        java.util.Date fechaEntUtil = fechaEntrega.getDate();
+        try {
+            int id = Integer.parseInt(tblTareas.getValueAt(filaSeleccionada, 2).toString());
+            String nuevoNombre = txtNombreTarea.getText().trim();
+            String nuevaAsignatura = txtAsignatura.getText().trim();
 
-        java.time.LocalDate fechaIni = fechaIniUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-        java.time.LocalDate fechaEnt = fechaEntUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-
-        if (fechaEnt.isBefore(fechaIni)) {
-            JOptionPane.showMessageDialog(this, "La fecha de entrega no puede ser anterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Cargar lista de tareas y buscar la que coincide con el ID
-        ListaTareas listaTareas = new ListaTareas();
-        boolean encontrada = false;
-
-        for (Modelos.Tarea t : listaTareas.getLista()) {
-            if (t.getId() == id && t.getUsuario().equals(usuarioLogueado)) {
-                t.setNombre(nuevoNombre);
-                t.setAsignatura(nuevaAsignatura);
-                t.setFechaInicio(fechaIni);
-                t.setFechaEntrega(fechaEnt);
-                t.setPrioridad(t.calcularPrioridad());
-                encontrada = true;
-                break;
+            // Validar fechas (con JDateChooser)
+            if (fechaInicio.getDate() == null || fechaEntrega.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            java.util.Date fechaIniUtil = fechaInicio.getDate();
+            java.util.Date fechaEntUtil = fechaEntrega.getDate();
+
+            java.time.LocalDate fechaIni = fechaIniUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+            java.time.LocalDate fechaEnt = fechaEntUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+            if (fechaEnt.isBefore(fechaIni)) {
+                JOptionPane.showMessageDialog(this, "La fecha de entrega no puede ser anterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Cargar lista de tareas y buscar la que coincide con el ID
+            ListaTareas listaTareas = new ListaTareas();
+            boolean encontrada = false;
+
+            for (Modelos.Tarea t : listaTareas.getLista()) {
+                if (t.getId() == id && t.getUsuario().equals(usuarioLogueado)) {
+                    t.setNombre(nuevoNombre);
+                    t.setAsignatura(nuevaAsignatura);
+                    t.setFechaInicio(fechaIni);
+                    t.setFechaEntrega(fechaEnt);
+                    t.setPrioridad(t.calcularPrioridad());
+                    encontrada = true;
+                    break;
+                }
+            }
+
+            if (encontrada) {
+                listaTareas.guardar();
+                JOptionPane.showMessageDialog(this, "✅ Tarea actualizada correctamente.");
+
+                // Refrescar la tabla directamente desde la principal
+                ventanaPrincipal.cargarTareasEnTabla(tblTareas);
+            } else {
+                JOptionPane.showMessageDialog(this, "⚠ No se encontró la tarea a actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "❌ Error al actualizar tarea: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        if (encontrada) {
-            listaTareas.guardar();
-            JOptionPane.showMessageDialog(this, "✅ Tarea actualizada correctamente.");
 
-            // Refrescar la tabla directamente desde la principal
-            ventanaPrincipal.cargarTareasEnTabla(tblTareas);
-        } else {
-            JOptionPane.showMessageDialog(this, "⚠ No se encontró la tarea a actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "❌ Error al actualizar tarea: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
- 
     }//GEN-LAST:event_btnActualizarTareaActionPerformed
 
     private void txtNombreTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreTareaActionPerformed
@@ -356,13 +343,13 @@ tblTareas.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtNombreTareaActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-    ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.setVisible(true);
 
-    // Recargar las tareas actualizadas en la tabla de la principal
-    ventanaPrincipal.cargarTareasEnTabla(ventanaPrincipal.getTblTareas());
+        // Recargar las tareas actualizadas en la tabla de la principal
+        ventanaPrincipal.cargarTareasEnTabla(ventanaPrincipal.getTblTareas());
 
-    // Cerrar la ventana actual de gestión
-    this.dispose();
+        // Cerrar la ventana actual de gestión
+        this.dispose();
 
 
     }//GEN-LAST:event_btnAtrasActionPerformed
