@@ -1,97 +1,85 @@
 package Vistas;
 
 import DAO.ListaTareas;
+import DAO.ListaUsuarios;
+import Modelos.Usuario;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author andre
  */
 public class VentanaGestionarUsuarios extends javax.swing.JFrame {
-     private ListaTareas listaTareas;
-     private DefaultTableModel modeloTabla;
-     private VentanaPrincipal ventanaPrincipal;
-     private String usuarioLogueado; 
 
-    // ✅ Constructor principal (usa el método cargarTareasEnTabla de la VentanaPrincipal)
-  public VentanaGestionarUsuarios(VentanaPrincipal ventanaPrincipal, String usuarioLogeado) {
-    initComponents();
-    
-    
-    this.ventanaPrincipal = ventanaPrincipal;
-    this.usuarioLogueado = usuarioLogeado;
+    private String usuarioLogueado;
+    private ListaUsuarios listaUsuarios;
 
-    setLocationRelativeTo(null);
-    setResizable(false);
-    tblUsuarios.setDefaultEditor(Object.class, null);
+    //contructor 
+    public VentanaGestionarUsuarios(String usuarioLogueado, ListaUsuarios listaUsuarios) {
+        initComponents();
 
-    // ✅ Usa el método ya existente en la ventana principal
-    ventanaPrincipal.cargarTareasEnTabla(tblUsuarios);
-    
-    // 🟢 Detectar clic en una fila para llenar los campos
-tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int fila = tblUsuarios.getSelectedRow();
-        if (fila != -1) {
-            // Nombre
-            txtNombreUsuario.setText(tblUsuarios.getValueAt(fila, 1).toString());
+        this.usuarioLogueado = usuarioLogueado;
+        this.listaUsuarios = listaUsuarios;
 
-            // Asignatura
-            txtApellido.setText(tblUsuarios.getValueAt(fila, 3).toString());
+        setLocationRelativeTo(null);
+        setResizable(false);
+        tblUsuarios.setDefaultEditor(Object.class, null);
 
-            // Fechas (convertir String a Date)
-            try {
-                String fechaInicioStr = tblUsuarios.getValueAt(fila, 4).toString();
-                String fechaEntregaStr = tblUsuarios.getValueAt(fila, 5).toString();
+        cargarUsuariosEnTabla();
 
-                java.time.LocalDate fechaIni = java.time.LocalDate.parse(fechaInicioStr);
-                java.time.LocalDate fechaEnt = java.time.LocalDate.parse(fechaEntregaStr);
-
-                java.util.Date fechaIniDate = java.util.Date.from(fechaIni.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant());
-                java.util.Date fechaEntDate = java.util.Date.from(fechaEnt.atStartOfDay(java.time.ZoneId.sys
-
-            } catch (Exception e) {
-                System.out.println("Error al convertir fechas: " + e.getMessage());
+        // 🟢 Detectar clic para llenar los campos
+        tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int fila = tblUsuarios.getSelectedRow();
+                if (fila != -1) {
+                    txtNombreUsuario.setText(tblUsuarios.getValueAt(fila, 0).toString());
+                    txtApellido.setText(tblUsuarios.getValueAt(fila, 1).toString());
+                    txtUsuario.setText(tblUsuarios.getValueAt(fila, 2).toString());
+                    txtContraseña.setText(tblUsuarios.getValueAt(fila, 3).toString());
+                }
             }
-        }
+        });
     }
-});
 
-
-}
-
-
-
-
-    // ✅ Constructor vacío (solo para pruebas o ejecución independiente)
+    // ✅ Constructor vacío 
     public VentanaGestionarUsuarios() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(985, 500);
 
-        this.listaTareas = new ListaTareas();
-        this.modeloTabla = (DefaultTableModel) tblUsuarios.getModel();
+        listaUsuarios = new ListaUsuarios();   // Cargar usuarios desde el archivo
+        cargarUsuariosEnTabla();// Llenar la tabla
 
-  
+    }
+
+    public void cargarUsuariosEnTabla() {
+        try {
+
+            DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
+            modelo.setRowCount(0); // Limpiar tabla
+
+            for (Usuario u : listaUsuarios.getLista()) {
+                modelo.addRow(new Object[]{
+                    u.getNombre(), // Columna 0
+                    u.getApellido(), // Columna 1
+                    u.getNombreUsuario(), // Columna 2
+                    u.getContrasena() // Columna 3
+                });
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error cargando usuarios: " + e.getMessage());
+        }
     }
 
 
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -109,7 +97,6 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
         txtUsuario = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         btnAtras = new javax.swing.JButton();
         txtAdmistracion = new javax.swing.JLabel();
         txtFondo = new javax.swing.JLabel();
@@ -129,7 +116,15 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             new String [] {
                 "Nombre", "Apellidos", "Usuario", "Contraseña"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblUsuarios);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 680, 220));
@@ -203,19 +198,6 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 690, 130));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 700, 240));
-
         btnAtras.setBackground(new java.awt.Color(100, 100, 100));
         btnAtras.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         btnAtras.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,7 +209,7 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
                 btnAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 420, 110, 40));
+        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 440, 110, 40));
 
         txtAdmistracion.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         txtAdmistracion.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,109 +223,101 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
-                                                 
-                                                
-    int filaSeleccionada = tblUsuarios.getSelectedRow();
+        int fila = tblUsuarios.getSelectedRow();
 
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona un Usuario para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    int idTarea = Integer.parseInt(tblUsuarios.getValueAt(filaSeleccionada, 2).toString());
-
-    int confirmacion = JOptionPane.showConfirmDialog(
-        this,
-        "¿Deseas eliminar esta Usuario?",
-        "Confirmar eliminación",
-        JOptionPane.YES_NO_OPTION
-    );
-
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        ListaTareas listaTareas = new ListaTareas();
-        boolean eliminada = listaTareas.eliminarTarea(idTarea);
-
-        if (eliminada) {
-            // ✅ Quita la fila directamente de la tabla
-            DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
-            modelo.removeRow(filaSeleccionada);
-
-            JOptionPane.showMessageDialog(this, "Usuario eliminada correctamente.");
-
-            // ❌ NO volver a llamar a ventanaPrincipal.cargarTareasEnTabla()
-            // (porque eso recarga desde archivo y vuelve a mostrar la antigua)
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró la Usuario para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un usuario para eliminar.");
+            return;
         }
-    }
 
+        String usuario = tblUsuarios.getValueAt(fila, 2).toString();
+        //Bloquea eliminación del administrador
+        if (usuario.equalsIgnoreCase("admin")) {
+            JOptionPane.showMessageDialog(this, "No puedes eliminar al usuario administrador.");
+            return;
+        }
 
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "¿Eliminar usuario " + usuario + "?",
+                "Confirmar",
+                JOptionPane.YES_NO_OPTION
+        );
 
-        // TODO add your handling code here:
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            Usuario u = listaUsuarios.buscarUsuario(usuario);
+
+            if (u != null) {
+                listaUsuarios.getLista().remove(u);
+                listaUsuarios.guardar();
+                // 🗑️ Eliminar tareas del usuario
+                ListaTareas listaTareas = new ListaTareas();
+                listaTareas.cargar();
+                listaTareas.eliminarTodasLasTareasDelUsuario(usuario);
+                listaTareas.guardar();
+
+                ((DefaultTableModel) tblUsuarios.getModel()).removeRow(fila);
+
+                if(usuario.equalsIgnoreCase(usuarioLogueado)) {
+                    JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.");
+                Login login = new Login();
+                login.setVisible(true);
+                this.dispose();
+                return;
+                
+                }else{
+                JOptionPane.showMessageDialog(this, "Usuario eliminado .");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el usuario.");
+            }
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnActualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuariosActionPerformed
-                                                  
-    int filaSeleccionada = tblUsuarios.getSelectedRow();
 
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona un Usuario para actualizar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        int filaSeleccionada = tblUsuarios.getSelectedRow();
 
-    try {
-        int id = Integer.parseInt(tblUsuarios.getValueAt(filaSeleccionada, 2).toString());
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un usuario para actualizar.");
+            return;
+        }
+
+        // ❗ Usuario actual (antes de los cambios)
+        String usuarioActual = tblUsuarios.getValueAt(filaSeleccionada, 2).toString();
+
+        // ❗ Evitar actualizar al administrador
+        if (usuarioActual.equalsIgnoreCase("Uzui")) {
+            JOptionPane.showMessageDialog(this, "No puedes actualizar al usuario administrador.");
+            return;
+        }
+        // ❗ Nuevos valores desde los campos
         String nuevoNombre = txtNombreUsuario.getText().trim();
-        String nuevaAsignatura = txtApellido.getText().trim();
+        String nuevoApellido = txtApellido.getText().trim();
+        String nuevoUsuario = txtUsuario.getText().trim();
+        String nuevaContrasena = txtContraseña.getText().trim();
 
-        // Validar fechas (con JDateChooser)
-        if (fechaInicio.getDate() == null || fechaEntrega.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        Usuario usuario = listaUsuarios.buscarUsuario(usuarioActual);
 
-        java.util.Date fechaIniUtil = fechaInicio.getDate();
-        java.util.Date fechaEntUtil = fechaEntrega.getDate();
+        if (usuario != null) {
+            // ✔ Actualizar datos
+            usuario.setNombre(nuevoNombre);
+            usuario.setApellido(nuevoApellido);
+            usuario.setNombreUsuario(nuevoUsuario);
+            usuario.setContrasena(nuevaContrasena);
 
-        java.time.LocalDate fechaIni = fechaIniUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-        java.time.LocalDate fechaEnt = fechaEntUtil.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+            listaUsuarios.guardar();  // guardar cambios
 
-        if (fechaEnt.isBefore(fechaIni)) {
-            JOptionPane.showMessageDialog(this, "La fecha de entrega no puede ser anterior a la fecha de inicio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            cargarUsuariosEnTabla(); // refrescar tabla
+            JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
 
-        // Cargar lista de tareas y buscar la que coincide con el ID
-        ListaTareas listaTareas = new ListaTareas();
-        boolean encontrada = false;
-
-        for (Modelos.Tarea t : listaTareas.getLista()) {
-            if (t.getId() == id && t.getUsuario().equals(usuarioLogueado)) {
-                t.setNombre(nuevoNombre);
-                t.setAsignatura(nuevaAsignatura);
-                t.setFechaInicio(fechaIni);
-                t.setFechaEntrega(fechaEnt);
-                t.setPrioridad(t.calcularPrioridad());
-                encontrada = true;
-                break;
-            }
-        }
-
-        if (encontrada) {
-            listaTareas.guardar();
-            JOptionPane.showMessageDialog(this, "✅ Tarea actualizada correctamente.");
-
-            // Refrescar la tabla directamente desde la principal
-            ventanaPrincipal.cargarTareasEnTabla(tblUsuarios);
         } else {
-            JOptionPane.showMessageDialog(this, "⚠ No se encontró la tarea a actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontró el usuario a actualizar.");
         }
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "❌ Error al actualizar tarea: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
 
- 
     }//GEN-LAST:event_btnActualizarUsuariosActionPerformed
 
     private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
@@ -351,14 +325,9 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtNombreUsuarioActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-    ventanaPrincipal.setVisible(true);
-
-    // Recargar las tareas actualizadas en la tabla de la principal
-    ventanaPrincipal.cargarTareasEnTabla(ventanaPrincipal.getTblTareas());
-
-    // Cerrar la ventana actual de gestión
-    this.dispose();
-
+        OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioLogueado);
+        opcionesTareas.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_btnAtrasActionPerformed
 
@@ -373,7 +342,6 @@ tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnEliminarTarea;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblContraseña;

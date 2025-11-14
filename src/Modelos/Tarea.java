@@ -103,6 +103,10 @@ public class Tarea implements Serializable {
             return "Baja";
         }
     }
+    public static void setContador(int valor) {
+    contador = valor;
+}
+
 }
             
 

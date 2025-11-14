@@ -146,10 +146,11 @@ public class Login extends javax.swing.JFrame {
     if (encontrado != null && encontrado.getContrasena().equals(contrasenaIngresada)) {
         JOptionPane.showMessageDialog(this, "✅ Inicio de sesión exitoso");
 
-        // ✅ Aquí pasamos el usuario al constructor
+        
         OpcionesTareas opcionesTareas = new OpcionesTareas(encontrado.getNombreUsuario());
         opcionesTareas.setVisible(true);
         this.dispose();
+        
     } else {
         JOptionPane.showMessageDialog(this, "❌ Usuario o contraseña incorrectos");
     } 

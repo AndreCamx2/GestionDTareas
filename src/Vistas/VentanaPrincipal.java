@@ -72,10 +72,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tituloTareas = new javax.swing.JLabel();
         btnAtras = new javax.swing.JButton();
         btnBuscartarea1 = new javax.swing.JButton();
-        btnAdmistrarUsuarios = new javax.swing.JButton();
         btnAnadirtarea = new javax.swing.JButton();
         btnAdministrarTareas = new javax.swing.JButton();
-        btnAdmistrarAsignaturas = new javax.swing.JButton();
         txtFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,19 +136,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnBuscartarea1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscartarea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 160, 40));
-
-        btnAdmistrarUsuarios.setBackground(new java.awt.Color(100, 140, 170));
-        btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnAdmistrarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdmistrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeUsuarios.png"))); // NOI18N
-        btnAdmistrarUsuarios.setText("Admistrar Usuarios");
-        btnAdmistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdmistrarUsuariosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, 40));
+        jPanel1.add(btnBuscartarea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 160, 40));
 
         btnAnadirtarea.setBackground(new java.awt.Color(100, 160, 100));
         btnAnadirtarea.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
@@ -163,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnAnadirtareaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 160, 40));
+        jPanel1.add(btnAnadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 160, 40));
 
         btnAdministrarTareas.setBackground(new java.awt.Color(170, 90, 90));
         btnAdministrarTareas.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
@@ -175,19 +161,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnAdministrarTareasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdministrarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 190, 40));
-
-        btnAdmistrarAsignaturas.setBackground(new java.awt.Color(245, 183, 153));
-        btnAdmistrarAsignaturas.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnAdmistrarAsignaturas.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdmistrarAsignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeAsignaturas.png"))); // NOI18N
-        btnAdmistrarAsignaturas.setText("Admistrar Asignaturas");
-        btnAdmistrarAsignaturas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdmistrarAsignaturasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAdmistrarAsignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, 190, 40));
+        jPanel1.add(btnAdministrarTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 190, 40));
 
         txtFondo.setBackground(new java.awt.Color(255, 255, 255));
         txtFondo.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
@@ -245,17 +219,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdministrarTareasActionPerformed
 
-    private void btnAdmistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarUsuariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdmistrarUsuariosActionPerformed
-
     private void btnBuscartarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscartarea1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscartarea1ActionPerformed
-
-    private void btnAdmistrarAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarAsignaturasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdmistrarAsignaturasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,8 +229,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrarTareas;
-    private javax.swing.JButton btnAdmistrarAsignaturas;
-    private javax.swing.JButton btnAdmistrarUsuarios;
     private javax.swing.JButton btnAnadirtarea;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBuscartarea1;
