@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame {
      public Login() {
         initComponents();
         
+        
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(525, 555);
@@ -76,11 +77,21 @@ public class Login extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 170, 30));
 
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);
+            }
+        });
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
             }
         });
         jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 170, 30));
@@ -166,6 +177,19 @@ public class Login extends javax.swing.JFrame {
         crearUsuario.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtContrasena.requestFocus();
+}
+
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    btnIngresar.doClick();  // Simula clic al botón
+}
+    }//GEN-LAST:event_txtContrasenaKeyPressed
     
     
     /**

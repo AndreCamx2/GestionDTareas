@@ -72,6 +72,12 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         tituloAñadirtarea.setForeground(new java.awt.Color(255, 255, 255));
         tituloAñadirtarea.setText("Añadir Tarea");
         jPanel1.add(tituloAñadirtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 220, 30));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 240, 30));
 
         lblNombre.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -97,6 +103,11 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         txtAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAsignaturaActionPerformed(evt);
+            }
+        });
+        txtAsignatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAsignaturaKeyPressed(evt);
             }
         });
         jPanel1.add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 230, 30));
@@ -131,7 +142,19 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 150, 40));
+
+        txtFechainicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFechainicioKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtFechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 180, 30));
+
+        txtFechaentrega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFechaentregaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtFechaentrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 200, 30));
 
         txtdfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
@@ -208,6 +231,33 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     private void txtAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAsignaturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAsignaturaActionPerformed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtAsignatura.requestFocus();
+}
+
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtAsignaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsignaturaKeyPressed
+     if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtFechainicio.requestFocus();
+}
+
+    }//GEN-LAST:event_txtAsignaturaKeyPressed
+
+    private void txtFechainicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechainicioKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtFechaentrega.requestFocus();
+}
+
+    }//GEN-LAST:event_txtFechainicioKeyPressed
+
+    private void txtFechaentregaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaentregaKeyPressed
+     if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    btnGuardar.doClick();
+}
+    }//GEN-LAST:event_txtFechaentregaKeyPressed
     
     /**
      * @param args the command line arguments

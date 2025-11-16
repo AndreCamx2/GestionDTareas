@@ -165,6 +165,11 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
                 txtNombreUsuarioActionPerformed(evt);
             }
         });
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 170, 30));
 
         lblApellido.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -176,6 +181,12 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre:");
         jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 140, 30));
 
         lblNombre1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -188,7 +199,18 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 170, 30));
+
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 180, 30));
 
         lblContraseña.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -334,6 +356,32 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtNombreUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyPressed
+      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtApellido.requestFocus();
+}
+
+    }//GEN-LAST:event_txtNombreUsuarioKeyPressed
+
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtUsuario.requestFocus();
+}
+
+    }//GEN-LAST:event_txtApellidoKeyPressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtContraseña.requestFocus();
+    }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
+             if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    btnActualizarUsuarios.doClick();
+}
+    }//GEN-LAST:event_txtContraseñaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
