@@ -54,12 +54,12 @@ public class OpcionesTareas extends javax.swing.JFrame {
 
         txtTareaCoop.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaCoop.setForeground(new java.awt.Color(255, 255, 255));
-        txtTareaCoop.setText("tareas cooperativas");
+        txtTareaCoop.setText("Tareas Cooperativas");
         jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 180, 30));
 
         txtTareaIndividual.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaIndividual.setForeground(new java.awt.Color(255, 255, 255));
-        txtTareaIndividual.setText("tareas individuales");
+        txtTareaIndividual.setText("Tareas Individuales");
         jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 180, 30));
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
@@ -80,8 +80,8 @@ public class OpcionesTareas extends javax.swing.JFrame {
         });
         jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 160));
 
-        btnAdmistrarUsuarios.setBackground(new java.awt.Color(51, 51, 51));
-        btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnAdmistrarUsuarios.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         btnAdmistrarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btnAdmistrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/adminDeUsuarios.png"))); // NOI18N
         btnAdmistrarUsuarios.setText("Admistrar Usuarios");
@@ -90,7 +90,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnAdmistrarUsuariosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, 40));
+        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 230, 50));
 
         btnAtras.setBackground(new java.awt.Color(100, 100, 100));
         btnAtras.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N

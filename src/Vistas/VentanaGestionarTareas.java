@@ -173,6 +173,11 @@ public class VentanaGestionarTareas extends javax.swing.JFrame {
                 txtNombreTareaActionPerformed(evt);
             }
         });
+        txtNombreTarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreTareaKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 170, 30));
 
         lblAsignatura.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -194,8 +199,20 @@ public class VentanaGestionarTareas extends javax.swing.JFrame {
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre:");
         jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        txtAsignatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAsignaturaKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 140, 30));
         jPanel2.add(fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 140, 30));
+
+        fechaEntrega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fechaEntregaKeyPressed(evt);
+            }
+        });
         jPanel2.add(fechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 130, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 690, 130));
@@ -353,6 +370,27 @@ public class VentanaGestionarTareas extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void txtNombreTareaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreTareaKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtAsignatura.requestFocus();
+}
+
+    }//GEN-LAST:event_txtNombreTareaKeyPressed
+
+    private void txtAsignaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAsignaturaKeyPressed
+       if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    fechaInicio.requestFocus();
+}
+
+    }//GEN-LAST:event_txtAsignaturaKeyPressed
+
+    private void fechaEntregaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaEntregaKeyPressed
+      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    btnActualizarTarea.doClick();
+}
+
+    }//GEN-LAST:event_fechaEntregaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
