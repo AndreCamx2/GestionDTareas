@@ -237,8 +237,8 @@ try {
     }//GEN-LAST:event_txtNombreUsuarioKeyPressed
 
     private void txtContrasenaUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaUsuarioKeyPressed
-              if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-   btnCrearUsuario.requestFocus();
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        btnCrearUsuario.doClick();
 }
     }//GEN-LAST:event_txtContrasenaUsuarioKeyPressed
 
