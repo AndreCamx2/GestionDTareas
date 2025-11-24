@@ -72,11 +72,21 @@ public class CrearUsuario extends javax.swing.JFrame {
                 txtContrasenaUsuarioActionPerformed(evt);
             }
         });
+        txtContrasenaUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaUsuarioKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtContrasenaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 220, 30));
 
         txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreUsuarioActionPerformed(evt);
+            }
+        });
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyPressed(evt);
             }
         });
         jPanel1.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 220, 30));
@@ -86,12 +96,22 @@ public class CrearUsuario extends javax.swing.JFrame {
                 txtApellidoActionPerformed(evt);
             }
         });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 220, 30));
 
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
             }
         });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 220, 30));
@@ -197,6 +217,30 @@ try {
     private void txtContrasenaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContrasenaUsuarioActionPerformed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+   if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtApellido.requestFocus();
+}
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtNombreUsuario.requestFocus();
+}
+    }//GEN-LAST:event_txtApellidoKeyPressed
+
+    private void txtNombreUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyPressed
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    txtContrasenaUsuario.requestFocus();
+}
+    }//GEN-LAST:event_txtNombreUsuarioKeyPressed
+
+    private void txtContrasenaUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaUsuarioKeyPressed
+              if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+   btnCrearUsuario.requestFocus();
+}
+    }//GEN-LAST:event_txtContrasenaUsuarioKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
