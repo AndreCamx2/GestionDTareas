@@ -256,7 +256,8 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
             ListaUsuarios lista = new ListaUsuarios();
             lista.cargar();
 
-            VentanaGestionarUsuarios admin = new VentanaGestionarUsuarios("Admin", lista );
+            VentanaGestionarUsuarios admin = new VentanaGestionarUsuarios(usuario, lista );
+
             admin.setVisible(true);
             this.dispose();
 
