@@ -18,11 +18,11 @@ public class OpcionesTareas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(500, 450);
-        
+      // Permitir navegación con teclado entre botones   
     btnTrabajoIndividual.setFocusable(true);
     btnTrabajoCoop.setFocusable(true);
 
-    activarNavegacionConTeclado();
+    activarNavegacionConTeclado(); // Activar controles del teclado
     }
 
     @SuppressWarnings("unchecked")
@@ -115,8 +115,8 @@ public class OpcionesTareas extends javax.swing.JFrame {
 
     private void activarNavegacionConTeclado() {
 
-    btnTrabajoIndividual.requestFocus();
-
+    btnTrabajoIndividual.requestFocus();// Primer botón seleccionado
+     // → : Ir a botón de trabajo cooperativo
     btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "irDerecha");
     btnTrabajoIndividual.getActionMap().put("irDerecha", new AbstractAction() {
         @Override
@@ -124,7 +124,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
             btnTrabajoCoop.requestFocus();
         }
     });
-
+    // ← : Volver al botón anterior
     btnTrabajoCoop.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "irIzquierda");
     btnTrabajoCoop.getActionMap().put("irIzquierda", new AbstractAction() {
         @Override
@@ -132,7 +132,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
             btnTrabajoIndividual.requestFocus();
         }
     });
-
+     // ENTER: Ejecutar botón de tareas individuales
     btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
     btnTrabajoIndividual.getActionMap().put("enter", new AbstractAction() {
         @Override
@@ -140,7 +140,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
             btnTrabajoIndividual.doClick();
         }
     });
-
+     // ENTER: Ejecutar botón de tareas cooperativas
     btnTrabajoCoop.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
     btnTrabajoCoop.getActionMap().put("enter", new AbstractAction() {
         @Override
@@ -148,7 +148,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
             btnTrabajoCoop.doClick();
         }
     });
-    
+  // DOWN: Bajar a "Administrar Usuarios"  
 btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "irAbajo1");
 btnTrabajoIndividual.getActionMap().put("irAbajo1", new AbstractAction() {
     @Override
@@ -164,7 +164,7 @@ btnTrabajoCoop.getActionMap().put("irAbajo2", new AbstractAction() {
         btnAdmistrarUsuarios.requestFocus();
     }
 });
-
+// Arriba desde Administrar Usuarios → volver a botones superiores
 btnAdmistrarUsuarios.getInputMap().put(KeyStroke.getKeyStroke("UP"), "irArriba1");
 btnAdmistrarUsuarios.getActionMap().put("irArriba1", new AbstractAction() {
     @Override
@@ -172,7 +172,7 @@ btnAdmistrarUsuarios.getActionMap().put("irArriba1", new AbstractAction() {
         btnTrabajoIndividual.requestFocus();
     }
 });
-
+// Abajo desde Administrar Usuarios → ir al botón Atrás
 btnAdmistrarUsuarios.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "irAbajo3");
 btnAdmistrarUsuarios.getActionMap().put("irAbajo3", new AbstractAction() {
     @Override
@@ -180,7 +180,7 @@ btnAdmistrarUsuarios.getActionMap().put("irAbajo3", new AbstractAction() {
         btnAtras.requestFocus();
     }
 });
-
+// Arriba desde Atrás → volver a Administrar Usuarios
 btnAtras.getInputMap().put(KeyStroke.getKeyStroke("UP"), "irArriba2");
 btnAtras.getActionMap().put("irArriba2", new AbstractAction() {
     @Override
@@ -188,7 +188,7 @@ btnAtras.getActionMap().put("irArriba2", new AbstractAction() {
         btnAdmistrarUsuarios.requestFocus();
     }
 });
-
+// ENTER en Administrar Usuarios
 btnAdmistrarUsuarios.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enterAdm");
 btnAdmistrarUsuarios.getActionMap().put("enterAdm", new AbstractAction() {
     @Override
@@ -196,7 +196,7 @@ btnAdmistrarUsuarios.getActionMap().put("enterAdm", new AbstractAction() {
         btnAdmistrarUsuarios.doClick();
     }
 });
-
+// ENTER en Atrás
 btnAtras.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enterAtras");
 btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
     @Override
@@ -217,17 +217,19 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
     }//GEN-LAST:event_btnTrabajoCoopActionPerformed
 
     private void btnTrabajoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoIndividualActionPerformed
+         // Abrir ventana principal de tareas individuales
         VentanaPrincipal ventana = new VentanaPrincipal(usuario);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTrabajoIndividualActionPerformed
 
     private void btnAdmistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarUsuariosActionPerformed
-
+        // Pedir usuario admin
         String usuarioIngresado = JOptionPane.showInputDialog(this, "Ingrese el usuario administrador:");
         if (usuarioIngresado == null) {
             return; 
         }
+         // Pedir contraseña admin
         String contrasenaIngresada = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
         if (contrasenaIngresada == null) {
             return; 
@@ -236,14 +238,14 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
         listaUsuarios.cargar();
 
         boolean accesoPermitido = false;
-
+         // Validar credenciales
         for (Usuario u : listaUsuarios.getLista()) {
 
             if (u.getNombreUsuario().equals(usuarioIngresado)
                     && u.getContrasena().equals(contrasenaIngresada)) {
 
                 if (u.getNombreUsuario().equalsIgnoreCase("admin")) {
-                    accesoPermitido = true;
+                    accesoPermitido = true;// Solo el usuario admin pasa
                 }
 
                 break; 
@@ -251,6 +253,8 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
         }
 
         if (accesoPermitido) {
+           
+            // Acceso válido → abrir panel de administración
             JOptionPane.showMessageDialog(this, "Acceso permitido. Bienvenido, Administrador.");
 
             ListaUsuarios lista = new ListaUsuarios();
@@ -261,6 +265,7 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
             this.dispose();
 
         } else {
+            // Credenciales incorrectas
             JOptionPane.showMessageDialog(
                     this,
                     "Usuario o contraseña incorrectos.\nAcceso denegado.",
@@ -272,6 +277,7 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
     }//GEN-LAST:event_btnAdmistrarUsuariosActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        // Volver al login
         Login login = new Login();
         login.setVisible(true);
         this.dispose();

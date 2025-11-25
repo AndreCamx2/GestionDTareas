@@ -12,7 +12,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     String usuarioLogeado;
 
     public VentanaPrincipal(String usuario) {
-       
+       setUndecorated(true);
         initComponents();
         
         setLocationRelativeTo(null);
@@ -67,6 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setEnabled(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -157,6 +158,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo.png"))); // NOI18N
         txtFondo.setMaximumSize(new java.awt.Dimension(1200, 824));
         txtFondo.setMinimumSize(new java.awt.Dimension(1200, 824));
+        txtFondo.setName(""); // NOI18N
         jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -250, 890, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

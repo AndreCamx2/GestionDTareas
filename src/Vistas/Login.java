@@ -73,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 230, 30));
 
+        txtContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtContrasenaMouseClicked(evt);
+            }
+        });
         txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContrasenaActionPerformed(evt);
@@ -181,6 +186,10 @@ public class Login extends javax.swing.JFrame {
     btnIngresar.doClick();  // Simula clic al botón
 }
     }//GEN-LAST:event_txtContrasenaKeyPressed
+
+    private void txtContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContrasenaMouseClicked
+   
+    }//GEN-LAST:event_txtContrasenaMouseClicked
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
