@@ -14,20 +14,21 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     private String usuario; 
 
      public VentanaAñadirTarea(DefaultTableModel modelo, String usuario) {
-        initComponents();
-        this.modeloTabla = modelo;
-        this.listaTareas = new ListaTareas();
-        this.usuario = usuario;
-        
+           this.modeloTabla = modelo;      // Modelo de la tabla que se actualizará
+        this.listaTareas = new ListaTareas();  // Lista interna de tareas
+        this.usuario = usuario;         // Usuario actual que añade tareas
+     
+        // Bloquear edición manual del campo de fecha de inicio
     JTextField editorInicio = (JTextField) txtFechainicio.getDateEditor().getUiComponent();
     editorInicio.setEditable(false);
     editorInicio.setFocusable(false);
-
+    
+ // Bloquear edición manual del campo de fecha de entrega
     JTextField editorEntrega = (JTextField) txtFechaentrega.getDateEditor().getUiComponent();
     editorEntrega.setEditable(false);
     editorEntrega.setFocusable(false);
     
-    
+   // Cuando seleccionan fecha de inicio → abrir automáticamente el calendario de entrega 
     txtFechainicio.getDateEditor().addPropertyChangeListener("date", evt -> {
         if (txtFechainicio.getDate() != null) {
             txtFechaentrega.getCalendarButton().requestFocusInWindow();
@@ -165,7 +166,7 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        // Volver a la ventana principal    
         VentanaPrincipal ventana = new VentanaPrincipal(usuario);
         ventana.setVisible(true);
         this.dispose(); 
@@ -175,34 +176,38 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
  try {
         String nombre = txtNombre.getText().trim();
         String asignatura = txtAsignatura.getText().trim();
-
+          
+        // Validar campos vacíos 
         if (nombre.isEmpty() || asignatura.isEmpty()) {
             JOptionPane.showMessageDialog(this, " Todos los campos son obligatorios.");
             return;
         }
-
+        // Validar que ambas fechas estén seleccionadas
         if (txtFechainicio.getDate() == null || txtFechaentrega.getDate() == null) {
             JOptionPane.showMessageDialog(this, " Debes seleccionar ambas fechas.");
             return;
         }
-
+        
+        // Convertir fechas de JDateChooser a LocalDate
         LocalDate fechaInicio = txtFechainicio.getDate().toInstant()
                 .atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaEntrega = txtFechaentrega.getDate().toInstant()
                 .atZone(ZoneId.systemDefault()).toLocalDate();
-
+         
+        // Validar que la entrega no sea antes del inicio
         if (fechaEntrega.isBefore(fechaInicio)) {
             JOptionPane.showMessageDialog(this, "La fecha de entrega no puede ser antes de la fecha de inicio.");
             return;
         }
-
+        // Crear nueva tarea
         Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
 
-        listaTareas.insertarTarea(tarea);
-        listaTareas.guardar(); 
+        listaTareas.insertarTarea(tarea); // Guardar en estructura interna
+        listaTareas.guardar();            // Guardar en archivo u origen de datos
 
+        // Añadir a la tabla visual
         modeloTabla.addRow(new Object[]{
-            modeloTabla.getRowCount() + 1,
+            modeloTabla.getRowCount() + 1, // Número automático
             tarea.getNombre(),
             tarea.getId(),
             tarea.getAsignatura(),
@@ -212,9 +217,10 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         });
 
         JOptionPane.showMessageDialog(this, "Tarea guardada exitosamente.");
-        this.dispose(); 
+        this.dispose(); // Cerrar ventana
 
     } catch (Exception e) {
+        // Captura de errores generales
         JOptionPane.showMessageDialog(this, "Error al guardar tarea: " + e.getMessage());
         e.printStackTrace();
     }

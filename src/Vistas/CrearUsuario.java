@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 public class CrearUsuario extends javax.swing.JFrame {
 
     public CrearUsuario() {
+       
+        
+        this.setUndecorated(true);
+        
         initComponents();
         setLocationRelativeTo(null); // Centrar ventana
     }
