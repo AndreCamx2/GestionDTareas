@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import DAO.ListaUsuarios;
@@ -11,10 +7,6 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-/**
- *
- * @author HP
- */
 public class OpcionesTareas extends javax.swing.JFrame {
 
     private String usuario;
@@ -54,12 +46,12 @@ public class OpcionesTareas extends javax.swing.JFrame {
         txtTareaCoop.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaCoop.setForeground(new java.awt.Color(255, 255, 255));
         txtTareaCoop.setText("Tareas Cooperativas");
-        jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 180, 30));
+        jPanel1.add(txtTareaCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 180, 30));
 
         txtTareaIndividual.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         txtTareaIndividual.setForeground(new java.awt.Color(255, 255, 255));
         txtTareaIndividual.setText("Tareas Individuales");
-        jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 180, 30));
+        jPanel1.add(txtTareaIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 180, 30));
 
         btnTrabajoCoop.setBackground(new java.awt.Color(102, 102, 102));
         btnTrabajoCoop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo-en-equipo.png"))); // NOI18N
@@ -68,7 +60,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnTrabajoCoopActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTrabajoCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, 160));
+        jPanel1.add(btnTrabajoCoop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 180, 160));
 
         btnTrabajoIndividual.setBackground(new java.awt.Color(102, 102, 102));
         btnTrabajoIndividual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trabajo individual.png"))); // NOI18N
@@ -77,7 +69,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnTrabajoIndividualActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 160));
+        jPanel1.add(btnTrabajoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 180, 160));
 
         btnAdmistrarUsuarios.setBackground(new java.awt.Color(102, 102, 102));
         btnAdmistrarUsuarios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -89,7 +81,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnAdmistrarUsuariosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 230, 50));
+        jPanel1.add(btnAdmistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 230, 50));
 
         btnAtras.setBackground(new java.awt.Color(100, 100, 100));
         btnAtras.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
@@ -102,7 +94,7 @@ public class OpcionesTareas extends javax.swing.JFrame {
                 btnAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 100, 40));
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 100, 40));
 
         txtFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo 2.png"))); // NOI18N
         jPanel1.add(txtFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -320, -1, -1));
@@ -123,10 +115,8 @@ public class OpcionesTareas extends javax.swing.JFrame {
 
     private void activarNavegacionConTeclado() {
 
-    // Enfocar por defecto el botón individual
     btnTrabajoIndividual.requestFocus();
 
-    // Acción: mover derechas
     btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "irDerecha");
     btnTrabajoIndividual.getActionMap().put("irDerecha", new AbstractAction() {
         @Override
@@ -143,7 +133,6 @@ public class OpcionesTareas extends javax.swing.JFrame {
         }
     });
 
-    // ENTER activa el botón
     btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
     btnTrabajoIndividual.getActionMap().put("enter", new AbstractAction() {
         @Override
@@ -160,7 +149,6 @@ public class OpcionesTareas extends javax.swing.JFrame {
         }
     });
     
-    // ABAJO desde TRABAJO INDIVIDUAL -> Administrar Usuarios
 btnTrabajoIndividual.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "irAbajo1");
 btnTrabajoIndividual.getActionMap().put("irAbajo1", new AbstractAction() {
     @Override
@@ -169,7 +157,6 @@ btnTrabajoIndividual.getActionMap().put("irAbajo1", new AbstractAction() {
     }
 });
 
-// ABAJO desde TRABAJO COOP -> Administrar Usuarios
 btnTrabajoCoop.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "irAbajo2");
 btnTrabajoCoop.getActionMap().put("irAbajo2", new AbstractAction() {
     @Override
@@ -178,7 +165,6 @@ btnTrabajoCoop.getActionMap().put("irAbajo2", new AbstractAction() {
     }
 });
 
-// ARRIBA desde ADMINISTRAR USUARIOS -> vuelve a Trabajo Individual (columna izquierda)
 btnAdmistrarUsuarios.getInputMap().put(KeyStroke.getKeyStroke("UP"), "irArriba1");
 btnAdmistrarUsuarios.getActionMap().put("irArriba1", new AbstractAction() {
     @Override
@@ -220,9 +206,6 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
 });
 
 }
-
-    
-    
     
     private void btnTrabajoCoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoCoopActionPerformed
     JOptionPane.showMessageDialog(
@@ -236,51 +219,43 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
     private void btnTrabajoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajoIndividualActionPerformed
         VentanaPrincipal ventana = new VentanaPrincipal(usuario);
         ventana.setVisible(true);
-        this.dispose();// TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnTrabajoIndividualActionPerformed
 
     private void btnAdmistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmistrarUsuariosActionPerformed
 
-        // Pedir usuario
         String usuarioIngresado = JOptionPane.showInputDialog(this, "Ingrese el usuario administrador:");
         if (usuarioIngresado == null) {
-            return; // Canceló
+            return; 
         }
-        // Pedir contraseña
         String contrasenaIngresada = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
         if (contrasenaIngresada == null) {
-            return; // Canceló
+            return; 
         }
-        // Cargar usuarios desde archivo
         ListaUsuarios listaUsuarios = new ListaUsuarios();
         listaUsuarios.cargar();
 
         boolean accesoPermitido = false;
 
-        // Buscar en la lista
         for (Usuario u : listaUsuarios.getLista()) {
 
-            // Comparar usuario + contraseña
             if (u.getNombreUsuario().equals(usuarioIngresado)
                     && u.getContrasena().equals(contrasenaIngresada)) {
 
-                // Verificar si es el ADMINISTRADOR (Uzui)
                 if (u.getNombreUsuario().equalsIgnoreCase("admin")) {
                     accesoPermitido = true;
                 }
 
-                break; // Ya encontramos al usuario
+                break; 
             }
         }
 
         if (accesoPermitido) {
             JOptionPane.showMessageDialog(this, "Acceso permitido. Bienvenido, Administrador.");
 
-            // Cargar usuarios correctamente
             ListaUsuarios lista = new ListaUsuarios();
             lista.cargar();
 
-            // Abrir la ventana usando el constructor que SÍ TIENE el listener del clic
             VentanaGestionarUsuarios admin = new VentanaGestionarUsuarios("Admin", lista );
             admin.setVisible(true);
             this.dispose();
@@ -294,7 +269,6 @@ btnAtras.getActionMap().put("enterAtras", new AbstractAction() {
             );
         }
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdmistrarUsuariosActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed

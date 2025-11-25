@@ -6,23 +6,24 @@ import Modelos.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-/**
- *
- * @author andre
- */
 public class VentanaGestionarUsuarios extends javax.swing.JFrame {
 
     private String usuarioLogueado;
     private ListaUsuarios listaUsuarios;
-
-    //contructor 
+ 
     public VentanaGestionarUsuarios(String usuarioLogueado, ListaUsuarios listaUsuarios) {
+        
         initComponents();
+        
+        setLocationRelativeTo(null);
+        setResizable(false);
+           
 
+    txtUsuario.setEditable(false);
+    txtUsuario.setFocusable(false);
+    txtUsuario.setBackground(new java.awt.Color(230, 230, 230)); 
+
+    setLocationRelativeTo(null);
         this.usuarioLogueado = usuarioLogueado;
         this.listaUsuarios = listaUsuarios;
 
@@ -32,7 +33,6 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
 
         cargarUsuariosEnTabla();
 
-        // 🟢 Detectar clic para llenar los campos
         tblUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -45,17 +45,37 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
                 }
             }
         });
+        
+        tblUsuarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                int fila = tblUsuarios.getSelectedRow();
+                if (fila != -1) {
+
+                evt.consume(); 
+
+                txtNombreUsuario.setText(tblUsuarios.getValueAt(fila, 0).toString());
+                txtApellido.setText(tblUsuarios.getValueAt(fila, 1).toString());
+                txtUsuario.setText(tblUsuarios.getValueAt(fila, 2).toString());
+                txtContraseña.setText(tblUsuarios.getValueAt(fila, 3).toString());
+
+                txtNombreUsuario.requestFocusInWindow();
+            }
+        }
+    }
+});
+      
     }
 
-    // ✅ Constructor vacío 
     public VentanaGestionarUsuarios() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(985, 500);
 
-        listaUsuarios = new ListaUsuarios();   // Cargar usuarios desde el archivo
-        cargarUsuariosEnTabla();// Llenar la tabla
+        listaUsuarios = new ListaUsuarios();   
+        cargarUsuariosEnTabla();
 
     }
 
@@ -63,14 +83,14 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
         try {
 
             DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
-            modelo.setRowCount(0); // Limpiar tabla
+            modelo.setRowCount(0); 
 
             for (Usuario u : listaUsuarios.getLista()) {
                 modelo.addRow(new Object[]{
-                    u.getNombre(), // Columna 0
-                    u.getApellido(), // Columna 1
-                    u.getNombreUsuario(), // Columna 2
-                    u.getContrasena() // Columna 3
+                    u.getNombre(), 
+                    u.getApellido(), 
+                    u.getNombreUsuario(), 
+                    u.getContrasena() 
                 });
             }
 
@@ -253,7 +273,6 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
         }
 
         String usuario = tblUsuarios.getValueAt(fila, 2).toString();
-        //Bloquea eliminación del administrador
         if (usuario.equalsIgnoreCase("admin")) {
             JOptionPane.showMessageDialog(this, "No puedes eliminar al usuario administrador.");
             return;
@@ -273,7 +292,6 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
             if (u != null) {
                 listaUsuarios.getLista().remove(u);
                 listaUsuarios.guardar();
-                // 🗑️ Eliminar tareas del usuario
                 ListaTareas listaTareas = new ListaTareas();
                 listaTareas.cargar();
                 listaTareas.eliminarTodasLasTareasDelUsuario(usuario);
@@ -295,7 +313,6 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No se encontró el usuario.");
             }
         }
-// TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnActualizarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuariosActionPerformed
@@ -307,15 +324,12 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
             return;
         }
 
-        // ❗ Usuario actual (antes de los cambios)
         String usuarioActual = tblUsuarios.getValueAt(filaSeleccionada, 2).toString();
 
-        // ❗ Evitar actualizar al administrador
         if (usuarioActual.equalsIgnoreCase("Uzui")) {
             JOptionPane.showMessageDialog(this, "No puedes actualizar al usuario administrador.");
             return;
         }
-        // ❗ Nuevos valores desde los campos
         String nuevoNombre = txtNombreUsuario.getText().trim();
         String nuevoApellido = txtApellido.getText().trim();
         String nuevoUsuario = txtUsuario.getText().trim();
@@ -324,15 +338,13 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
         Usuario usuario = listaUsuarios.buscarUsuario(usuarioActual);
 
         if (usuario != null) {
-            // ✔ Actualizar datos
             usuario.setNombre(nuevoNombre);
             usuario.setApellido(nuevoApellido);
             usuario.setNombreUsuario(nuevoUsuario);
             usuario.setContrasena(nuevaContrasena);
 
-            listaUsuarios.guardar();  // guardar cambios
-
-            cargarUsuariosEnTabla(); // refrescar tabla
+            listaUsuarios.guardar();  
+            cargarUsuariosEnTabla(); 
             JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
 
         } else {
@@ -366,7 +378,7 @@ public class VentanaGestionarUsuarios extends javax.swing.JFrame {
 
     private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-    txtUsuario.requestFocus();
+    txtContraseña.requestFocus();
 }
 
     }//GEN-LAST:event_txtApellidoKeyPressed

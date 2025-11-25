@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import DAO.ListaTareas;
@@ -11,19 +7,11 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author 
- */
 public class VentanaAñadirTarea extends javax.swing.JFrame {
 
-    private DefaultTableModel modeloTabla; // referencia al modelo de la tabla principal
+    private DefaultTableModel modeloTabla; 
     private ListaTareas listaTareas;
     private String usuario; 
-    /**
-     * Creates new form VentanaAñadirTarea
-     */
-    // constructor que recibe el modelo de la tabla principal
 
      public VentanaAñadirTarea(DefaultTableModel modelo, String usuario) {
         initComponents();
@@ -177,11 +165,10 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-// Abrimos la ventana principal
+
         VentanaPrincipal ventana = new VentanaPrincipal(usuario);
         ventana.setVisible(true);
-        this.dispose(); // Cierra Añadir tareas
-        // TODO add your handling code here:
+        this.dispose(); 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -190,12 +177,12 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
         String asignatura = txtAsignatura.getText().trim();
 
         if (nombre.isEmpty() || asignatura.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "⚠️ Todos los campos son obligatorios.");
+            JOptionPane.showMessageDialog(this, " Todos los campos son obligatorios.");
             return;
         }
 
         if (txtFechainicio.getDate() == null || txtFechaentrega.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "⚠️ Debes seleccionar ambas fechas.");
+            JOptionPane.showMessageDialog(this, " Debes seleccionar ambas fechas.");
             return;
         }
 
@@ -205,18 +192,15 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
                 .atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (fechaEntrega.isBefore(fechaInicio)) {
-            JOptionPane.showMessageDialog(this, "⚠️ La fecha de entrega no puede ser antes de la fecha de inicio.");
+            JOptionPane.showMessageDialog(this, "La fecha de entrega no puede ser antes de la fecha de inicio.");
             return;
         }
 
-        // Crear tarea
         Tarea tarea = new Tarea(nombre, asignatura, fechaInicio, fechaEntrega, usuario);
 
-        // ✅ Insertar tarea en la lista y guardar en archivo inmediatamente
         listaTareas.insertarTarea(tarea);
-        listaTareas.guardar(); // <--- esto asegura que VentanaPrincipal pueda leerla
+        listaTareas.guardar(); 
 
-        // Agregar inmediatamente al modelo de tabla
         modeloTabla.addRow(new Object[]{
             modeloTabla.getRowCount() + 1,
             tarea.getNombre(),
@@ -227,16 +211,14 @@ public class VentanaAñadirTarea extends javax.swing.JFrame {
             tarea.getPrioridad()
         });
 
-        JOptionPane.showMessageDialog(this, "✅ Tarea guardada exitosamente.");
-        this.dispose(); // Cierra ventana añadir tarea
+        JOptionPane.showMessageDialog(this, "Tarea guardada exitosamente.");
+        this.dispose(); 
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "❌ Error al guardar tarea: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error al guardar tarea: " + e.getMessage());
         e.printStackTrace();
     }
 
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAsignaturaActionPerformed
@@ -271,11 +253,6 @@ if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
     btnGuardar.doClick();
 }
     }//GEN-LAST:event_txtFechaentregaKeyPressed
-    
-    /**
-     * @param args the command line arguments
-     */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
