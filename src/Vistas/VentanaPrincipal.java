@@ -12,12 +12,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     String usuarioLogeado;
 
     public VentanaPrincipal(String usuario) {
-       setUndecorated(true);
+
         initComponents();
-        
+
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
         this.usuarioLogeado = usuario;
         DefaultTableModel modelo = (DefaultTableModel) tblTareas.getModel();
         tblTareas.setDefaultEditor(Object.class, null); // Desactiva edición de todas las celdas de la tabla
@@ -50,6 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println("Error cargando tareas: " + e.getMessage());
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -186,16 +187,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaAñadirTarea.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
-                cargarTareasEnTabla(tblTareas); 
+                cargarTareasEnTabla(tblTareas);
             }
-        }); 
+        });
     }//GEN-LAST:event_btnAnadirtareaActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
 
         OpcionesTareas opcionesTareas = new OpcionesTareas(usuarioLogeado);
         opcionesTareas.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnAdministrarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarTareasActionPerformed
@@ -206,7 +207,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministrarTareasActionPerformed
 
     private void btnBuscartarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscartarea1ActionPerformed
-        // TODO add your handling code here:
+        VentanaBuscarTareas ventana = new VentanaBuscarTareas(usuarioLogeado);
+        ventana.setVisible(true);
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscartarea1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
